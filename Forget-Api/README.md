@@ -17,7 +17,7 @@ Architecture: Onion
 ## Authenticate with JWT
 
 #### sign In
-```http
+```
   Post /api/v1/auth/signIn
 ```
 
@@ -27,7 +27,7 @@ Architecture: Onion
 | `password` | `string` | **Required**. password |
 
 #### Log out
-```http
+```
   Post /api/v1/auth/logOut
 ```
 
@@ -36,14 +36,14 @@ Architecture: Onion
 
 ### Get Products
 
-```http
+```
   GET /api/v1/Products/
 ```
 
 
 ### Get Product
 
-```http
+```
   GET /api/v1/Products/${id}
 ```
 
@@ -54,7 +54,7 @@ Architecture: Onion
 
 ### Add Product
 
-```http
+```
   Post /api/v1/Product
 ```
 
@@ -67,7 +67,7 @@ Architecture: Onion
 
 ### Update Product
 
-```http
+```
   Put /api/v1/Product/${id}
 ```
 | Parameter | Type     | Description                       |
@@ -83,7 +83,7 @@ Architecture: Onion
 
 ### Delete Product
 
-```http
+```
   Delete /api/v1/Product/${id}
 ```
 | Parameter | Type     | Description                       |
@@ -95,14 +95,14 @@ Architecture: Onion
 
 ### Get Users
 
-```http
+```
   GET /api/v1/Users/
 ```
 
 
 ### Get User
 
-```http
+```
   GET /api/v1/User/${id}
 ```
 
@@ -113,7 +113,7 @@ Architecture: Onion
 
 ### Add User
 
-```http
+```
   Post /api/v1/User
 ```
 
@@ -126,7 +126,7 @@ Architecture: Onion
 
 ### Update User
 
-```http
+```
   Put /api/v1/User/${id}
 ```
 | Parameter | Type     | Description                       |
@@ -142,7 +142,7 @@ Architecture: Onion
 
 ### Delete User
 
-```http
+```
   Delete /api/v1/User/${id}
 ```
 | Parameter | Type     | Description                       |
@@ -153,8 +153,8 @@ Architecture: Onion
 
 ## Badges
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![MIT License](s://img.shields.io/badge/License-MIT-green.svg)](s://choosealicense.com/licenses/mit/)
 ## Authors
 
-- [@Angel Gabriel Lopez](https://www.github.com/imrlopezag)
+- [@Angel Gabriel Lopez](s://www.github.com/imrlopezag)
 

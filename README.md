@@ -5,6 +5,12 @@
 This is the complete forget project, this is an E-Commerce, with authentication and role management for users
 
 
+## Features
+
+- [BackEnd](https://github.com/ImRLopezAG/Forget-Project/tree/main/Forget-Api#readme)
+- [FrontEnd](https://github.com/ImRLopezAG/Forget-Project/tree/main/Forget#readme)
+
+
 ## Badges
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
