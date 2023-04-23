@@ -18,7 +18,7 @@ Architecture: Onion
 
 #### sign In
 ```
-  Post /api/v1/auth/signIn
+  Post /api/Auth/LogIn
 ```
 
 | Body | Type     | Description                |
@@ -28,7 +28,7 @@ Architecture: Onion
 
 #### Log out
 ```
-  Post /api/v1/auth/logOut
+  Post /api/Auth/logOut
 ```
 
 
@@ -37,14 +37,14 @@ Architecture: Onion
 ### Get Products
 
 ```
-  GET /api/v1/Products/
+  GET /api/Products/List
 ```
 
 
 ### Get Product
 
 ```
-  GET /api/v1/Products/${id}
+  GET /api/Products/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -55,20 +55,24 @@ Architecture: Onion
 ### Add Product
 
 ```
-  Post /api/v1/Product
+  Post /api/Product/Create
 ```
 
 | Body | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `name`      | `string` | **Required**.  |
-| `quantity`      | `number` | **Required**.  |
-| `type`      | `string` | **Required**.  |
-| `gender`      | `string` | **Required**.  |
+| `description`      | `string` | **Required**.  |
+| `price`      | `number` | **Required**.  |
+| `categoryId`      | `string` | **Required**.  |
+| `portrait`      | `string` | **Optional**.  |
+| `imageFile`      | `string` | **Optional**.  |
+
+- if you want to upload an image you need to send the image uploaded in a multipart form data with the key `imageFile` and the value of the image or you can send a link of the image in the key `portrait` and the value of the link.
 
 ### Update Product
 
 ```
-  Put /api/v1/Product/${id}
+  Put /api/Product/${id}
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
@@ -77,14 +81,18 @@ Architecture: Onion
 | Body | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `name`      | `string` | **Required**.  |
-| `quantity`      | `number` | **Required**.  |
-| `type`      | `string` | **Required**.  |
-| `gender`      | `string` | **Required**.  |
+| `description`      | `string` | **Required**.  |
+| `price`      | `number` | **Required**.  |
+| `categoryId`      | `string` | **Required**.  |
+| `portrait`      | `string` | **Optional**.  |
+| `imageFile`      | `string` | **Optional**.  |
+
+- if you want to upload an image you need to send the image uploaded in a multipart form data with the key `imageFile` and the value of the image or you can send a link of the image in the key `portrait` and the value of the link.
 
 ### Delete Product
 
 ```
-  Delete /api/v1/Product/${id}
+  Delete /api/Product/${id}
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
@@ -96,14 +104,14 @@ Architecture: Onion
 ### Get Users
 
 ```
-  GET /api/v1/Users/
+  GET /api/User/List
 ```
 
 
 ### Get User
 
 ```
-  GET /api/v1/User/${id}
+  GET /api/User/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -114,7 +122,7 @@ Architecture: Onion
 ### Add User
 
 ```
-  Post /api/v1/User
+  Post /api/User/Create
 ```
 
 | Body | Type     | Description                       |
@@ -127,7 +135,7 @@ Architecture: Onion
 ### Update User
 
 ```
-  Put /api/v1/User/${id}
+  Put /api/User/${id}
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
@@ -143,8 +151,64 @@ Architecture: Onion
 ### Delete User
 
 ```
-  Delete /api/v1/User/${id}
+  Delete /api/User/${id}
 ```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+
+
+## Categories
+
+### Get Categories
+
+```
+  GET /api/Category/List
+```
+
+### Get Category
+
+```
+  GET /api/Category/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+### Add Category
+
+```
+  Post /api/Category/Create
+```
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**.  |
+| `description`      | `string` | **Required**.  |
+
+### Update Category
+
+```
+  Put /api/Category/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**.  |
+| `description`      | `string` | **Required**.  |
+
+
+### Delete Category
+
+```
+  Delete /api/Category/${id}
+```
+
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**.|
@@ -153,7 +217,12 @@ Architecture: Onion
 
 ## Badges
 
-[![MIT License](s://img.shields.io/badge/License-MIT-green.svg)](s://choosealicense.com/licenses/mit/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![.Net](https://img.shields.io/badge/.Net-6.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/6.0)
+[![SQL Server](https://img.shields.io/badge/SQL%20Server-2019-blue.svg)](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+[![Entity Framework](https://img.shields.io/badge/Entity%20Framework-6.16.0-blue.svg)](https://docs.microsoft.com/en-us/ef/ef6/)
+[![Onion Architecture](https://img.shields.io/badge/Onion%20Architecture-1.0.0-blue.svg)](https://www.codeproject.com/Articles/1154573/Onion-Architecture-in-ASP-NET-MVC)
+[![Swagger](https://img.shields.io/badge/Swagger-6.1.4-blue.svg)](https://swagger.io/)
 ## Authors
 
 - [@Angel Gabriel Lopez](s://www.github.com/imrlopezag)

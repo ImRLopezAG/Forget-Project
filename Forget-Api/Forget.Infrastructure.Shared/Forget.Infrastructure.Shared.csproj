@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+    <PackageReference Include="MimeKit" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Forget.Core.Domain\Forget.Core.Domain.csproj" />
+    <ProjectReference Include="..\Forget.Core.Service\Forget.Core.Service.csproj" />
+    <ProjectReference Include="..\Forget.Infrastructure.Identity\Forget.Infrastructure.Identity.csproj" />
+    <ProjectReference Include="..\Forget.Infrastructure.Persistence\Forget.Infrastructure.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

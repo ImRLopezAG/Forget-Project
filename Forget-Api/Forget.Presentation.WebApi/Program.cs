@@ -1,24 +1,66 @@
+using Microsoft.AspNetCore.Mvc;
+using Forget.Core.Application;
+using Forget.Infrastructure.Identity;
+using Forget.Infrastructure.Persistence;
+using Forget.Infrastructure.Shared;
+using Forget.Presentation.WebApi.Extensions;
+using Forget.Presentation.WebApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddControllers(opt =>
+{
+  opt.Filters.Add(new ProducesAttribute("application/json"));
+}).ConfigureApiBehaviorOptions(opt =>
+{
+  opt.SuppressInferBindingSourcesForParameters = true;
+  opt.SuppressMapClientErrors = false;
+});
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddPersistenceInfrastructure(builder.Configuration);
+builder.Services.AddIdentityInfrastructureForApi(builder.Configuration);
+builder.Services.AddSharedInfrastructure(builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddApiControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHealthChecks();
+builder.Services.AddSwaggerExtension();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddAuthorization(opt =>
+{
+  opt.AddPolicy("AdminOrDev", policy => policy.RequireRole("Dev", "Admin"));
+  opt.AddPolicy("Developer", policy => policy.RequireRole("Dev"));
+  opt.AddPolicy("Administrator", policy => policy.RequireRole("Admin"));
+});
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) {
+if (app.Environment.IsDevelopment())
+{
   app.UseSwagger();
   app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseRouting();
 
-app.MapControllers();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseSwaggerExtension();
+app.UseErrorHandlingMiddleware();
+app.UseHealthChecks("/health");
+
+app.UseEndpoints(endpoints =>
+{
+  endpoints.MapControllers();
+});
+
+app.UseCors("CorsPolicy");
 
 app.Run();

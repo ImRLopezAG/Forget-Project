@@ -7,7 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Forget.Core.Application\Forget.Core.Application.csproj" />
+    <ProjectReference Include="..\Forget.Core.Domain\Forget.Core.Domain.csproj" />
+    <ProjectReference Include="..\Forget.Core.Service\Forget.Core.Service.csproj" />
+    <ProjectReference Include="..\Forget.Infrastructure.Identity\Forget.Infrastructure.Identity.csproj" />
+    <ProjectReference Include="..\Forget.Infrastructure.Persistence\Forget.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\Forget.Infrastructure.Shared\Forget.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
 </Project>
