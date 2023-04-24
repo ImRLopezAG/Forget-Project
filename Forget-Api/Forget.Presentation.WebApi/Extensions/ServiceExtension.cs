@@ -1,32 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 
-namespace Forget.Presentation.WebApi.Extensions
-{
-  public static class ServiceExtension
-  {
-    public static void AddSwaggerExtension(this IServiceCollection services)
-    {
-      services.AddSwaggerGen(options =>
-      {
+namespace Forget.Presentation.WebApi.Extensions {
+  public static class ServiceExtension {
+    public static void AddSwaggerExtension(this IServiceCollection services) {
+      services.AddSwaggerGen(options => {
         List<string> xmlFiles = Directory.GetFiles(AppContext.BaseDirectory, "*.xml", searchOption: SearchOption.TopDirectoryOnly).ToList();
         xmlFiles.ForEach(xmlFile => options.IncludeXmlComments(xmlFile));
 
-        options.SwaggerDoc("v1", new OpenApiInfo
-        {
+        options.SwaggerDoc("v1", new OpenApiInfo {
           Version = "Forget",
           Title = "Forget API",
           Description = "This Api will be responsible for overall data distribution",
-          Contact = new OpenApiContact
-          {
+          Contact = new OpenApiContact {
             Name = "Angel Lopez",
             Url = new Uri("https://imrlopez.dev")
           }
         });
         options.EnableAnnotations();
         options.DescribeAllParametersInCamelCase();
-        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
+        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
           Name = "Authorization",
           In = ParameterLocation.Header,
           Type = SecuritySchemeType.ApiKey,

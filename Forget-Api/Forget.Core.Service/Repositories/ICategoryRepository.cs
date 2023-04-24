@@ -3,5 +3,5 @@ using Forget.Core.Service.Core;
 
 namespace Forget.Core.Service.Repositories;
 
-public interface ICategoryRepository: IGenericRepository<Category>{
+public interface ICategoryRepository : IGenericRepository<Category> {
 }

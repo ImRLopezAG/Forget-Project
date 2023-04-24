@@ -18,7 +18,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
     summary: $"Get all entities",
     description: "This endpoint returns all the entities"
   )]
-  public async Task<ActionResult> List() {
+  public async virtual Task<ActionResult> List() {
     var result = await _service.GetAll();
     if (result == null)
       return NotFound("There are no entities");
@@ -35,7 +35,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
     summary: $"Get a entity by id",
     description: "The id must be a valid guid and must be in the route"
   )]
-  public async Task<ActionResult> GetById([FromQuery] string id) {
+  public async virtual Task<ActionResult> Get([FromQuery] string id) {
     var result = await _service.GetById(id);
     if (result == null)
       return NotFound("There is no entity with this id");
@@ -52,7 +52,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
     summary: $"Create a entity",
     description: "The id in the body is not required"
   )]
-  public async Task<ActionResult> Create([FromBody] TSaveDto dto) {
+  public async virtual Task<ActionResult> Create([FromBody] TSaveDto dto) {
     if (!ModelState.IsValid)
       return BadRequest("Invalid data");
 
@@ -73,7 +73,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
     summary: $"Update a entity",
     description: "The id in the route must be the same as the id in the body"
   )]
-  public async Task<ActionResult> Update([FromBody] TSaveDto dto) {
+  public async virtual Task<ActionResult> Update([FromBody] TSaveDto dto) {
     if (!ModelState.IsValid)
       return BadRequest("Invalid data");
 
@@ -96,7 +96,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
     summary: $"Delete a entity",
     description: "The id must be a valid guid and must be in the route"
   )]
-  public async Task<ActionResult> Delete([FromQuery] string id) {
+  public async virtual Task<ActionResult> Delete([FromQuery] string id) {
     var result = await _service.GetEntity(id);
     if (result == null)
       return NotFound("There is no entity with this id");

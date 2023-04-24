@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using Forget.Core.Service.Core.Models;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace Forget.Core.Service.Dtos.Account;
 
-public class SaveAccountDto : Base
-{
+public class SaveAccountDto : Base {
   public string FirstName { get; set; } = null!;
   public string LastName { get; set; } = null!;
   public string UserName { get; set; } = null!;

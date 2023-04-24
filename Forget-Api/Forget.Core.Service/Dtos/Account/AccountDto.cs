@@ -1,10 +1,9 @@
-using System.Text.Json.Serialization;
 using Forget.Core.Service.Core.Models;
+using System.Text.Json.Serialization;
 
 namespace Forget.Core.Service.Dtos.Account;
 
-public class AccountDto : Base
-{
+public class AccountDto : Base {
   [JsonIgnore]
   public string UserName { get; set; } = null!;
   public string Email { get; set; } = null!;
@@ -16,7 +15,5 @@ public class AccountDto : Base
   public bool EmailConfirmed { get; set; }
   [JsonIgnore]
   public string Role { get; set; } = null!;
-  public string PhoneNumber { get; set; } = null!;
-  [JsonIgnore]
   public string Image { get; set; } = null!;
 }

@@ -4,7 +4,6 @@ using Forget.Core.Service.Dtos.Category;
 
 namespace Forget.Core.Service.Controllers;
 
-public interface ICategoryController: IGenericController<CategoryDto, SaveCategoryDto, Category>
-{
-  
+public interface ICategoryController : IGenericController<CategoryDto, SaveCategoryDto, Category> {
+
 }

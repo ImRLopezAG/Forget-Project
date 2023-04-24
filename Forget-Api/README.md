@@ -16,7 +16,8 @@ Architecture: Onion
 
 ## Authenticate with JWT
 
-#### sign In
+#### Log In
+
 ```
   Post /api/Auth/LogIn
 ```
@@ -28,7 +29,7 @@ Architecture: Onion
 
 #### Log out
 ```
-  Post /api/Auth/logOut
+  Post /api/Auth/LogOut
 ```
 
 
@@ -37,14 +38,14 @@ Architecture: Onion
 ### Get Products
 
 ```
-  GET /api/Products/List
+  GET /api/Product/List
 ```
 
 
 ### Get Product
 
 ```
-  GET /api/Products/${id}
+  GET /api/Product/Get/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -72,7 +73,7 @@ Architecture: Onion
 ### Update Product
 
 ```
-  Put /api/Product/${id}
+  Put /api/Product/Update/${id}
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
@@ -92,7 +93,7 @@ Architecture: Onion
 ### Delete Product
 
 ```
-  Delete /api/Product/${id}
+  Delete /api/Product/Delete/${id}
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
@@ -111,7 +112,7 @@ Architecture: Onion
 ### Get User
 
 ```
-  GET /api/User/${id}
+  GET /api/User/Get/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -127,15 +128,19 @@ Architecture: Onion
 
 | Body | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `First Name`      | `string` | **Required**.  |
-| `Last Name`      | `string` | **Required**.  |
-| `Email`      | `string` | **Required**.  |
-| `Username`      | `string` | **Required**.  |
+| `firstName`      | `string` | **Required**.  |
+| `lastName`      | `string` | **Required**.  |
+| `email`      | `string` | **Required**.  |
+| `username`      | `string` | **Required**.  |
+| `password`      | `string` | **Required**.  |
+| `confirmPassword`      | `string` | **Required**.  |
+| `image`      | `string` | **Required**.  |
+| `role`      | `number` | **Required**.  |
 
 ### Update User
 
 ```
-  Put /api/User/${id}
+  Put /api/User/Update/${id}
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
@@ -143,15 +148,19 @@ Architecture: Onion
 
 | Body | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `First Name`      | `string` | **Required**.  |
-| `Last Name`      | `string` | **Required**.  |
-| `Email`      | `string` | **Required**.  |
-| `Username`      | `string` | **Required**.  |
+| `firstName`      | `string` | **Required**.  |
+| `lastName`      | `string` | **Required**.  |
+| `email`      | `string` | **Required**.  |
+| `username`      | `string` | **Required**.  |
+| `password`      | `string` | **Required**.  |
+| `confirmPassword`      | `string` | **Required**.  |
+| `image`      | `string` | **Required**.  |
+| `role`      | `number` | **Required**.  |
 
 ### Delete User
 
 ```
-  Delete /api/User/${id}
+  Delete /api/User/Delete/${id}
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
@@ -169,7 +178,7 @@ Architecture: Onion
 ### Get Category
 
 ```
-  GET /api/Category/${id}
+  GET /api/Category/Get/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -190,7 +199,7 @@ Architecture: Onion
 ### Update Category
 
 ```
-  Put /api/Category/${id}
+  Put /api/Category/Update/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -206,7 +215,7 @@ Architecture: Onion
 ### Delete Category
 
 ```
-  Delete /api/Category/${id}
+  Delete /api/Category/Delete/${id}
 ```
 
 | Parameter | Type     | Description                       |

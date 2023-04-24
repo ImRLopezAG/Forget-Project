@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Forget.Core.Domain.Core;
 using Forget.Core.Service.Core;
 using Forget.Infrastructure.Persistence.Context;
@@ -9,14 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Forget.Infrastructure.Persistence.Core;
 
-public class GenericRepository<TEntity>: IGenericRepository<TEntity> where TEntity : BaseEntity
-{
+public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity {
   private readonly ForgetContext _context;
 
   public GenericRepository(ForgetContext context) {
     _context = context;
   }
-    public virtual async Task<IEnumerable<TEntity>> GetAll() => await _context.Set<TEntity>().OrderByDescending(x => x.CreatedAt).ToListAsync();
+  public virtual async Task<IEnumerable<TEntity>> GetAll() => await _context.Set<TEntity>().OrderByDescending(x => x.CreatedAt).ToListAsync();
   public virtual async Task<TEntity> GetEntity(string id) => await _context.Set<TEntity>().FindAsync(id);
 
 

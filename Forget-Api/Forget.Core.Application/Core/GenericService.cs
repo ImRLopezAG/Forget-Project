@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Forget.Core.Domain.Core;
 using Forget.Core.Service.Core;
@@ -9,13 +5,11 @@ using Forget.Core.Service.Core.Models;
 
 namespace Forget.Core.Application.Core;
 
-public class GenericService<Entity, SaveEntity, TEntity> : IGenericService<Entity, SaveEntity, TEntity> where Entity : Base where SaveEntity : Base where TEntity : BaseEntity
-{
+public class GenericService<Entity, SaveEntity, TEntity> : IGenericService<Entity, SaveEntity, TEntity> where Entity : Base where SaveEntity : Base where TEntity : BaseEntity {
   private readonly IGenericRepository<TEntity> _repository;
   private readonly IMapper _mapper;
 
-  public GenericService(IGenericRepository<TEntity> repository, IMapper mapper)
-  {
+  public GenericService(IGenericRepository<TEntity> repository, IMapper mapper) {
     _repository = repository;
     _mapper = mapper;
   }

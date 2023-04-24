@@ -5,7 +5,6 @@ using Forget.Core.Service.Dtos.Product;
 
 namespace Forget.Core.Service.Controllers;
 
-public interface IProductController: IGenericController<ProductDto, SaveProductDto, Product>
-{
-    
+public interface IProductController : IGenericController<ProductDto, SaveProductDto, Product> {
+
 }

@@ -5,12 +5,11 @@ using Forget.Infrastructure.Persistence.Core;
 
 namespace Forget.Infrastructure.Persistence.Repositories;
 
-public class PhotoRepository : GenericRepository<Photo>, IPhotoRepository
-{
+public class PhotoRepository : GenericRepository<Photo>, IPhotoRepository {
   private readonly ForgetContext _context;
   public PhotoRepository(ForgetContext context) : base(context) => _context = context;
 
-  public async Task DeleteRange(List<Photo> photos){
+  public async Task DeleteRange(List<Photo> photos) {
     _context.Photos.RemoveRange(photos);
     await _context.SaveChangesAsync();
   }

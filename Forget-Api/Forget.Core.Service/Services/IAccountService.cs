@@ -14,4 +14,5 @@ public interface IAccountService {
   Task ChangeStatus(string id);
   Task<IEnumerable<AccountDto>> GetAll();
   Task<AccountDto> GetById(string id);
+  Task Delete(string id);
 }

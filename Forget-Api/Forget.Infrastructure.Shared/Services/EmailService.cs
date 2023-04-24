@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Forget.Core.Domain.Settings;
 using Forget.Core.Service.Dtos;
 using Forget.Core.Services.Services;
@@ -12,9 +8,8 @@ using MimeKit;
 
 namespace Forget.Infrastructure.Shared.Services;
 
-public class EmailService: IEmailService
-{
-    private readonly MailSettings _mailSettings;
+public class EmailService : IEmailService {
+  private readonly MailSettings _mailSettings;
 
   public EmailService(IOptions<MailSettings> mailSettings) => _mailSettings = mailSettings.Value;
   public async Task SendEmail(EmailRequest request) {

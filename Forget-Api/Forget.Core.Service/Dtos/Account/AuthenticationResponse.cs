@@ -1,8 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace Forget.Core.Service.Dtos.Account;
-public class AuthenticationResponse
-{
+public class AuthenticationResponse {
   public string Id { get; set; } = null!;
   public string UserName { get; set; } = null!;
   public string Email { get; set; } = null!;

@@ -4,8 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace Forget.Infrastructure.Identity.interfaces;
 
-public interface IJwtService
-{
+public interface IJwtService {
   Task<JwtSecurityToken> GenerateJwToken(ApplicationUser user);
   RefreshToken GenerateRefreshToken();
 }

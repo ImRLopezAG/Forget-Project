@@ -7,12 +7,10 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Forget.Presentation.WebApi.Controllers;
 [SwaggerTag("Category Management")]
-public class CategoryController: GenericController<CategoryDto, SaveCategoryDto, Category>, ICategoryController
-{
+public class CategoryController : GenericController<CategoryDto, SaveCategoryDto, Category>, ICategoryController {
   private readonly ICategoryService _service;
 
-  public CategoryController(ICategoryService service) : base(service)
-  {
+  public CategoryController(ICategoryService service) : base(service) {
     _service = service;
   }
 }

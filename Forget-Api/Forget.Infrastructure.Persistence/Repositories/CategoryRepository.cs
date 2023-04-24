@@ -5,8 +5,7 @@ using Forget.Infrastructure.Persistence.Core;
 
 namespace Forget.Infrastructure.Persistence.Repositories;
 
-public class CategoryRepository: GenericRepository<Category>, ICategoryRepository
-{
+public class CategoryRepository : GenericRepository<Category>, ICategoryRepository {
   private readonly ForgetContext _context;
   public CategoryRepository(ForgetContext context) : base(context) => _context = context;
 }

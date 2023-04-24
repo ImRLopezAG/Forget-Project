@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Forget.Core.Service.Contracts;
 using Forget.Core.Service.Dtos.Account;
 using Forget.Presentation.WebApi.Core;
@@ -10,12 +6,10 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Forget.Presentation.WebApi.Controllers;
 [SwaggerTag("Authentication Management")]
-public class AuthenticateController: BaseApiController
-{
+public class AuthenticateController : BaseApiController {
   private readonly IUserService _userService;
 
-  public AuthenticateController(IUserService userService)
-  {
+  public AuthenticateController(IUserService userService) {
     _userService = userService;
   }
 
@@ -27,8 +21,7 @@ public class AuthenticateController: BaseApiController
     Summary = "Authenticates a user",
     Description = "Authenticates a user"
   )]
-  public async Task<IActionResult> Auth([FromBody] AuthenticationRequest model)
-  {
+  public async Task<IActionResult> Auth([FromBody] AuthenticationRequest model) {
     var response = await _userService.AuthenticateAsync(model);
 
     if (response == null)
@@ -44,8 +37,7 @@ public class AuthenticateController: BaseApiController
     Summary = "Logout a user",
     Description = "Logout a user"
   )]
-  public async Task<IActionResult> Auth()
-  {
+  public async Task<IActionResult> Auth() {
     await _userService.SignOutAsync();
     HttpContext.Response.Cookies.Delete("token");
     HttpContext.Response.Cookies.Delete("Authorization");

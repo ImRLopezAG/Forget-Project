@@ -5,8 +5,7 @@ using Forget.Presentation.WebApi.Core;
 
 namespace Forget.Presentation.WebApi;
 
-public static class ServiceRegistration
-{
+public static class ServiceRegistration {
   public static void AddApiControllers(this IServiceCollection services) {
     #region Controllers
     services.AddTransient(typeof(IGenericController<,,>), typeof(GenericController<,,>));

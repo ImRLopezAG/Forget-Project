@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Forget.Core.Domain;
 using Forget.Core.Domain.Core;
 using Microsoft.EntityFrameworkCore;
 
 namespace Forget.Infrastructure.Persistence.Context;
 
-public class ForgetContext : DbContext
-{
+public class ForgetContext : DbContext {
   public ForgetContext(DbContextOptions<ForgetContext> options) : base(options) { }
 
   public DbSet<Product> Products { get; set; } = null!;
@@ -30,7 +25,7 @@ public class ForgetContext : DbContext
     return base.SaveChangesAsync(cancellationToken);
   }
 
-  protected override void OnModelCreating(ModelBuilder modelBuilder){
+  protected override void OnModelCreating(ModelBuilder modelBuilder) {
     #region Tables
     modelBuilder.Entity<Product>().ToTable("Products");
     modelBuilder.Entity<Category>().ToTable("Categories");

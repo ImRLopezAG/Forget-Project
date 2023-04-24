@@ -5,47 +5,30 @@ using Forget.Core.Service.Services;
 namespace Forget.Core.Application.Services;
 
 public class UserService : IUserService {
-  public Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request) {
-    throw new NotImplementedException();
-  }
+  private readonly IAccountService _accountService;
 
-  public Task ChangeStatus(string id) {
-    throw new NotImplementedException();
+  public UserService(IAccountService accountService) {
+    _accountService = accountService;
   }
+  public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request) => await _accountService.AuthenticateAsync(request);
 
-  public Task<string> ConfirmAccountAsync(string userId, string token) {
-    throw new NotImplementedException();
-  }
+  public async Task ChangeStatus(string id) => await _accountService.ChangeStatus(id);
 
-  public Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordRequest request, string origin) {
-    throw new NotImplementedException();
-  }
+  public async Task<string> ConfirmAccountAsync(string userId, string token) => await _accountService.ConfirmAccountAsync(userId, token);
 
-  public Task<IEnumerable<AccountDto>> GetAll() {
-    throw new NotImplementedException();
-  }
+  public async Task Delete(string id) => await _accountService.Delete(id);
 
-  public Task<AccountDto> GetById(string id) {
-    throw new NotImplementedException();
-  }
-  Task<SaveAccountDto> IAccountService.GetEntity(string id) {
-    throw new NotImplementedException();
-  }
-  public Task<RegisterResponse> RegisterUserAsync(RegisterRequest request, string origin) {
-    throw new NotImplementedException();
-  }
+  public async Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordRequest request, string origin) => await _accountService.ForgotPasswordAsync(request, origin);
 
-  public Task<ResetPasswordResponse> ResetPasswordAsync(ResetPasswordRequest request) {
-    throw new NotImplementedException();
-  }
+  public async Task<IEnumerable<AccountDto>> GetAll() => await _accountService.GetAll();
+  public async Task<AccountDto> GetById(string id) => await _accountService.GetById(id);
+  public async Task<SaveAccountDto> GetEntity(string id) => await _accountService.GetEntity(id);
+  public async Task<RegisterResponse> RegisterUserAsync(RegisterRequest request, string origin) => await _accountService.RegisterUserAsync(request, origin);
 
-  public Task SignOutAsync() {
-    throw new NotImplementedException();
-  }
+  public async Task<ResetPasswordResponse> ResetPasswordAsync(ResetPasswordRequest request) => await _accountService.ResetPasswordAsync(request);
 
-  public Task<RegisterResponse> UpdateUserAsync(RegisterRequest request) {
-    throw new NotImplementedException();
-  }
+  public async Task SignOutAsync() => await _accountService.SignOutAsync();
 
+  public async Task<RegisterResponse> UpdateUserAsync(RegisterRequest request) => await _accountService.UpdateUserAsync(request);
 
 }

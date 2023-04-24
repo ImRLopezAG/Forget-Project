@@ -3,7 +3,6 @@ using Forget.Core.Service.Core;
 
 namespace Forget.Core.Service.Repositories;
 
-public interface IProductRepository: IGenericRepository<Product>
-{
-  
+public interface IProductRepository : IGenericRepository<Product> {
+
 }
