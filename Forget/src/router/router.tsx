@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { App } from '../App'
+import App from '../App'
+import { About, Cart, Home, Login, Men, Shop, Women } from '@/components'
+
 import ErrorPage from './ErrorPage'
 
 export const router = createBrowserRouter([
@@ -10,15 +12,31 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Home</h1>
+        element: <Login />
       },
       {
-        path: '/about',
-        element: <h1>About</h1>
+        path: '/home',
+        element: <Home />
+      },
+      {
+        path: '/men',
+        element: <Men />
       },
       {
         path: '/women',
-        element: <h1>Women</h1>
+        element: <Women />
+      },
+      {
+        path: '/about',
+        element: <About />
+      },
+      {
+        path: '/shop',
+        element: <Shop />
+      },
+      {
+        path: '/cart',
+        element: <Cart />
       }
     ]
   }
