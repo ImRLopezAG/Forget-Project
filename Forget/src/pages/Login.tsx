@@ -1,82 +1,25 @@
-import { instance } from '@/api/service'
-import { useLogin } from '@/hooks/useLogin'
-import { useState } from 'react'
-import { toast } from 'react-hot-toast'
+import { Submit } from '@/components'
+import { useForm, useLogin } from '@/hooks'
+import { useEffect } from 'react'
 
 interface IForm {
   username: string
   password: string
 }
-interface IError {
-  hasError: boolean
-  errorMessage: string
-}
 
 export const Login: React.FC = () => {
-  const [form, setForm] = useState<IForm>({
+  const { form, handleChange } = useForm<IForm>({
     username: '',
     password: ''
   })
-  const [error, setError] = useState<IError>({
-    hasError: false,
-    errorMessage: ''
-  })
-
   const { username, password } = form
-  const { hasError, errorMessage } = useLogin({ username })
+  const { hasError, errorMessage, handleSubmit, error, resetError, isLoading } =
+    useLogin(form)
   const { hasError: pss, errorMessage: pssMessage } = error
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { target } = event
-    setForm({
-      ...form,
-      [target.name]: target.value
-    })
-    if (error.hasError && target.name === 'password') {
-      setError({
-        hasError: false,
-        errorMessage: ''
-      })
-    }
-  }
-
-  const handleLogin = async (): Promise<void> => {
-    try {
-      await Promise.resolve(
-        instance.post(
-          '/auth/login',
-          {
-            username,
-            password
-          },
-          {
-            withCredentials: true,
-            headers: { 'Content-Type': 'application/json' }
-          }
-        )
-      )
-    } catch (error) {
-      console.log(error)
-      await Promise.reject(error)
-    }
-  }
-
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    event.preventDefault()
-    if (!password) {
-      return setError({
-        hasError: true,
-        errorMessage: 'password is required'
-      })
-    }
-    await toast.promise(handleLogin(), {
-      loading: 'Loading',
-      success: 'Login success',
-      error: 'Login failed'
-    })
-  }
+  useEffect(() => {
+    if (hasError || pss) resetError()
+  }, [username])
 
   return (
     <form onSubmit={handleSubmit} className='mx-auto w-full max-w-sm'>
@@ -128,16 +71,7 @@ export const Login: React.FC = () => {
           {pss && <p className='text-red-500 text-xs italic'>{pssMessage}</p>}
         </div>
       </div>
-      <div className='md:flex md:items-center'>
-        <div className='md:w-1/3' />
-        <div className='md:w-2/3'>
-          <input
-            className='shadow bg-primary-500 hover:bg-primary-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded'
-            type='submit'
-            value='Sign In'
-          />
-        </div>
-      </div>
+      <Submit text='Login' isLoading={isLoading} />
     </form>
   )
 }

@@ -1,16 +1,22 @@
-import { toggleSlideMenu } from '@/constant'
 import { NavLink } from 'react-router-dom'
 import { Routes } from './container/Routes'
+import { useState } from 'react'
 
 export const Navigation: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = (): void => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <>
       <nav className='fixed top-0 z-50 w-full'>
         <div className='flex items-center justify-between'>
           <NavLink to='/' className='text-2xl font-bold text-white'>
-            <span className='ml-2' onClick={toggleSlideMenu}>Forget</span>
+            <span className='ml-2' onClick={toggleMenu}>Forget</span>
           </NavLink>
-          <button className='sm:hidden' onClick={toggleSlideMenu} type='button'>
+          <button className='sm:hidden' onClick={toggleMenu} type='button'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-6 w-6 text-white'
@@ -35,9 +41,9 @@ export const Navigation: React.FC = () => {
       </nav>
       <aside
         id='slider'
-        className='fixed sm:hidden top-0 right-0 z-40 w-65 h-screen pt-8 transition-transform -translate-x-full bg-side sm:translate-x-0'
+        className={`fixed sm:hidden top-0 right-0 z-40 w-28 h-screen pt-8 transition-transform bg-side ${isMenuOpen ? '' : 'hidden'}`}
       >
-        <div className='h-full pt-4 overflow-y-auto' onClick={toggleSlideMenu}>
+        <div className='h-full pt-4 overflow-y-auto'>
           <Routes />
         </div>
       </aside>

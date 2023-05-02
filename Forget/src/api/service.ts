@@ -1,9 +1,18 @@
-import { Base } from '@/constant/interface'
+import { useAuthStore } from '@/context/authcontext'
+import { PORT } from '@/utils'
+import { Base } from '@/utils/interface'
 import axios from 'axios'
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: `https://localhost:${PORT}/api`,
   timeout: 5000
+})
+
+instance.interceptors.request.use((config) => {
+  const { token } = useAuthStore.getState()
+  if (token) config.headers.Authorization = `Bearer ${token}`
+
+  return config
 })
 
 export default class Service<Entity extends Base> {
@@ -18,7 +27,7 @@ export default class Service<Entity extends Base> {
   }
 
   public get = async (id: string): Promise<Entity> => {
-    return (await instance.get(`/${this.url}/Get/${id}`)).data
+    return (await instance.get(`/${this.url}/Get/?id=${id}`)).data
   }
 
   public create = async (entity: Entity): Promise<Entity> => {

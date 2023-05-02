@@ -1,83 +1,92 @@
 import { instance } from '@/api/service'
-import debounce from 'just-debounce-it'
-import { useEffect, useRef, useState } from 'react'
+import { useAuthStore } from '@/context/authcontext'
+import { IError } from '@/utils/interface'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
+import { useValidate } from './useValidate'
 
 interface Return {
   errorMessage: string
   hasError: boolean
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>
+  error: IError
+  resetError: () => void
+  isLoading: boolean
 }
 interface Props {
   username: string
+  password: string
 }
 
-export function useLogin ({ username }: Props): Return {
-  const [errorMessage, setErrorMessage] = useState<string>('')
-  const [hasError, setHasError] = useState<boolean>(false)
-  const isFirstInput = useRef<boolean>(true)
+export function useLogin ({ username, password }: Props): Return {
+  const [error, setError] = useState<IError>({
+    hasError: false,
+    errorMessage: ''
+  })
+  const { userError } = useValidate({ username })
 
-  useEffect(() => {
-    if (isFirstInput.current) {
-      isFirstInput.current = username === ''
-      return
+  const { hasError, errorMessage } = userError
+
+  const setToken = useAuthStore((state) => state.setToken)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  const handleLogin = async (): Promise<void> => {
+    try {
+      setIsLoading(true)
+      const login = await Promise.resolve(
+        instance.post(
+          '/auth/login',
+          {
+            username,
+            password
+          },
+          {
+            withCredentials: true,
+            headers: { 'Content-Type': 'application/json' }
+          }
+        )
+      )
+      const { token } = login.data
+      setToken(token)
+      setIsLoading(false)
+    } catch (error) {
+      console.log(error)
+      await Promise.reject(error)
+      setIsLoading(false)
     }
+  }
 
-    if (username === '') {
-      setErrorMessage('this field is required')
-      setHasError(true)
-      return
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault()
+    if (!password) {
+      return setError({
+        hasError: true,
+        errorMessage: 'password is required'
+      })
     }
-
-    if (username.match(/^\d+$/)) {
-      setErrorMessage('the username must not be a number')
-      setHasError(true)
-      return
+    try {
+      await instance.post(`user/username/${username}`, {})
+    } catch (error) {
+      return setError({
+        hasError: true,
+        errorMessage: 'username is not found'
+      })
     }
+    await toast.promise(handleLogin(), {
+      loading: 'Loading',
+      success: 'Login success',
+      error: 'Login failed'
+    })
+  }
 
-    if (username.length < 3) {
-      setErrorMessage('the username must be at least 3 characters long')
-      setHasError(true)
-      return
-    }
+  const resetError = (): void => {
+    setError({
+      hasError: false,
+      errorMessage: ''
+    })
+  }
 
-    if (username.match(/[^a-zA-Z0-9]/)) {
-      setErrorMessage('the username must not contain special characters')
-      setHasError(true)
-      return
-    }
-
-    if (username.match(/\s/)) {
-      setErrorMessage('the username must not contain spaces')
-      setHasError(true)
-      return
-    }
-
-    setErrorMessage('')
-    setHasError(false)
-  }, [username])
-
-  useEffect(
-    () =>
-      debounce(async () => {
-        if (isFirstInput.current) {
-          isFirstInput.current = username === ''
-          return
-        }
-
-        if (!hasError) {
-          instance
-            .get(`/user/username/${username}`)
-            .then(() => {
-              setErrorMessage('')
-              setHasError(false)
-            })
-            .catch(() => {
-              setErrorMessage('invalid username')
-              setHasError(true)
-            })
-        }
-      }, 800)(),
-    [username]
-  )
-
-  return { hasError, errorMessage }
+  return { hasError, errorMessage, handleSubmit, error, resetError, isLoading }
 }

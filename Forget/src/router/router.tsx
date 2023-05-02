@@ -1,8 +1,14 @@
+import App from '@/App'
+import {
+  AdminHome,
+  CategoryForm,
+  ProductForm,
+  UserForm
+} from '@/components/admin/forms'
+import { About, Cart, Home, Login, Men, Shop, Women } from '@/pages'
 import { createBrowserRouter } from 'react-router-dom'
-import App from '../App'
-import { About, Cart, Home, Login, Men, Shop, Women } from '@/components'
-
 import ErrorPage from './ErrorPage'
+import { categoryLoader } from './loaders/categoryLoader'
 
 export const router = createBrowserRouter([
   {
@@ -15,28 +21,62 @@ export const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: '/home',
+        path: 'home',
         element: <Home />
       },
       {
-        path: '/men',
+        path: 'men',
         element: <Men />
       },
       {
-        path: '/women',
+        path: 'women',
         element: <Women />
       },
       {
-        path: '/about',
+        path: 'about',
         element: <About />
       },
       {
-        path: '/shop',
+        path: 'shop',
         element: <Shop />
       },
       {
-        path: '/cart',
+        path: 'cart',
         element: <Cart />
+      },
+      {
+        path: 'admin',
+        element: <AdminHome />,
+        children: [
+          {
+            path: '/admin/category',
+            element: <CategoryForm />,
+            errorElement: <ErrorPage />,
+            children: [
+              {
+                path: '/admin/category/:id',
+                id: 'category',
+                loader: categoryLoader,
+                element: <CategoryForm />
+              }
+            ]
+          },
+          {
+            path: '/admin/product',
+            element: <ProductForm />,
+            errorElement: <ErrorPage />,
+            children: [
+              {
+                path: '/admin/product/:id',
+                element: <ProductForm />
+              }
+            ]
+          },
+          {
+            path: '/admin/user',
+            element: <UserForm />
+          }
+        ]
       }
     ]
   }
