@@ -1,4 +1,4 @@
-import { IGenericService, Schema } from '@/utils/constants'
+import { IGenericService, Schema } from '../utils/constants'
 import { Model, ModelStatic } from 'sequelize'
 
 export abstract class GenericService<TEntity extends Model> implements IGenericService<TEntity> {

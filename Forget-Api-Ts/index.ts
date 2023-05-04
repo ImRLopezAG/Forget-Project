@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import app from '@/app'
-import sequelize from '@/database/database'
-import { Category, Product, User } from '@/models'
-import relationShip from '@/models/relationShip'
-import { PORT } from '@/utils/constants'
+import app from './src/app'
+import sequelize from './src/database/database'
+import { Category, Product, User } from './src/models'
+import relationShip from './src/models/relationShip'
+import { PORT } from './src/utils/constants'
 
 const category = new Category()
 const user = new User()

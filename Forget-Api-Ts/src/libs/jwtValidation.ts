@@ -1,4 +1,4 @@
-import { SECRET } from '@/utils/constants'
+import { SECRET } from '../utils/constants'
 import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload } from 'jsonwebtoken'
 

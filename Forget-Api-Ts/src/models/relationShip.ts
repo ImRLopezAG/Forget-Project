@@ -1,4 +1,4 @@
-import { Category, Product } from '@/models'
+import { Category, Product } from './'
 
 export default function relationShip (): void {
   Category.hasMany(Product, {

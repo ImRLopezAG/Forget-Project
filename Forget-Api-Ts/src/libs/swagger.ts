@@ -1,4 +1,4 @@
-import { PORT } from '@/utils/constants'
+import { PORT } from '../utils/constants'
 import swaggerJSDoc, { OAS3Definition, OAS3Options } from 'swagger-jsdoc'
 
 const swaggerDefinition: OAS3Definition = {

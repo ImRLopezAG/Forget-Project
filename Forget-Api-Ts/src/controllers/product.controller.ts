@@ -1,7 +1,7 @@
-import { GenericController } from '@/core'
-import { IProductController } from '@/interfaces/controllers'
-import { Product } from '@/models'
-import { ProductService } from '@/services'
+import { GenericController } from '../core'
+import { IProductController } from '../interfaces/controllers'
+import { Product } from '../models'
+import { ProductService } from '../services'
 import { Lifecycle, injectable, scoped } from 'tsyringe'
 
 @injectable()

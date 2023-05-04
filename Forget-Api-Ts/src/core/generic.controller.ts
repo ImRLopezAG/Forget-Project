@@ -1,4 +1,4 @@
-import { IGenericController } from '@/utils/constants'
+import { IGenericController } from '../utils/constants'
 import { NextFunction, Request, Response } from 'express'
 import { Model } from 'sequelize'
 import { GenericService } from './generic.service'

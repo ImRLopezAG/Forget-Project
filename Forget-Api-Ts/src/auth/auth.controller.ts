@@ -1,5 +1,5 @@
-import { User } from '@/models'
-import { SECRET } from '@/utils/constants'
+import { User } from '../models'
+import { SECRET } from '../utils/constants'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import { NextFunction, Request, Response } from 'express'

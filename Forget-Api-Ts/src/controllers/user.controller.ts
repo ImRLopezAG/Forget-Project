@@ -1,7 +1,7 @@
-import { GenericController } from '@/core'
-import { IUserController } from '@/interfaces/controllers/IUserController'
-import { User } from '@/models'
-import { UserService } from '@/services'
+import { GenericController } from '../core'
+import { IUserController } from '../interfaces/controllers/IUserController'
+import { User } from '../models'
+import { UserService } from '../services'
 import { Lifecycle, autoInjectable, scoped } from 'tsyringe'
 import { NextFunction, Request, Response } from 'express'
 @autoInjectable()

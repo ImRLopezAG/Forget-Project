@@ -11,13 +11,7 @@
     "outDir": "./dist",
     "rootDir": ".",
     "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "*": ["node_modules/*", "src/utils/types/*"]
-    }
+    "baseUrl": "."
   },
   "include": [
     "./"

@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
 import { Router } from 'express'
-import { EntityController } from '@/controllers'
+import { EntityController } from '../controllers'
 
 export const entity = Router()
 

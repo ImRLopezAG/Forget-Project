@@ -1,9 +1,9 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
 import { Router } from 'express'
-import { UserController } from '@/controllers'
-import { validateUpdateUser, validateUser } from '@/middleware'
-import { jwtValidation } from '@/libs'
+import { UserController } from '../controllers'
+import { validateUpdateUser, validateUser } from '../middleware'
+import { jwtValidation } from '../libs'
 
 export const user = Router()
 
