@@ -4,9 +4,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "node ./dist/index.js",
     "dev": "nodemon",
-    "build": "tsc"
   },
   "keywords": [],
   "dependencies": {
