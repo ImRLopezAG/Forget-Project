@@ -1,6 +1,6 @@
 import { GenericService } from '../core'
 import { IUserService } from '../interfaces/services'
-import { User } from '@/models'
+import { User } from '../models'
 
 export class UserService extends GenericService<User> implements IUserService {
   constructor () {
