@@ -1,7 +1,5 @@
-﻿using Forget.Core.Service.Dtos;
-using Forget.Core.Service.Dtos.Account;
+﻿using Forget.Core.Service.Dtos.Account;
 using Forget.Core.Service.Enums;
-using Forget.Core.Service.Helpers;
 using Forget.Core.Service.Services;
 using Forget.Core.Services.Services;
 using Forget.Infrastructure.Identity.Entities;
@@ -13,6 +11,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Forget.Infrastructure.Identity.Services;
 public class AccountService : IAccountService {
@@ -32,23 +31,27 @@ public class AccountService : IAccountService {
   public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request) {
 
     AuthenticationResponse response = new();
-
-    var user = await _userManager.FindByEmailAsync(request.Email);
+    var emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+    var user = request.User switch {
+      { } when emailRegex.IsMatch(request.User) => await _userManager.FindByEmailAsync(request.User),
+      { } => await _userManager.FindByNameAsync(request.User),
+      _ => null
+    };
     if (user == null) {
       response.HasError = true;
-      response.Error = $"No Accounts registered with {request.Email}";
+      response.Error = $"No Accounts registered with {request.User}";
       return response;
     }
 
     var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
     if (!result.Succeeded) {
       response.HasError = true;
-      response.Error = $"Invalid credentials for {request.Email}";
+      response.Error = $"Invalid credentials for {request.User}";
       return response;
     }
     if (!user.EmailConfirmed) {
       response.HasError = true;
-      response.Error = $"The account {request.Email} was deactivated temporarily";
+      response.Error = $"The account {request.User} was deactivated temporarily";
       return response;
     }
 
@@ -129,72 +132,6 @@ public class AccountService : IAccountService {
     }
     return response;
   }
-
-  public async Task<string> ConfirmAccountAsync(string userId, string token) {
-    var user = await _userManager.FindByIdAsync(userId);
-    if (user == null) {
-      return $"No accounts registered with this user";
-    }
-
-
-    user.EmailConfirmed = !user.EmailConfirmed;
-
-    await _userManager.UpdateAsync(user);
-
-    return $"Account {user.Email} has been {(user.EmailConfirmed ? "activated" : "deactivated")} successfully";
-  }
-
-  public async Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordRequest request, string origin) {
-    ForgotPasswordResponse response = new() {
-      HasError = false
-    };
-
-    var user = await _userManager.FindByEmailAsync(request.Email);
-
-    if (user == null) {
-      response.HasError = true;
-      response.Error = $"No Accounts registered with {request.Email}";
-      return response;
-    }
-
-    var verificationUri = await _requestService.SendForgotPassword(user, origin);
-
-    await _emailService.SendEmail(new EmailRequest() {
-      To = user.Email,
-      Body = EmailRequests.ResetPassword(user.UserName, verificationUri),
-      Subject = "reset password"
-    });
-
-
-    return response;
-  }
-
-  public async Task<ResetPasswordResponse> ResetPasswordAsync(ResetPasswordRequest request) {
-    ResetPasswordResponse response = new() {
-      HasError = false
-    };
-
-    var user = await _userManager.FindByEmailAsync(request.Email);
-
-    if (user == null) {
-      response.HasError = true;
-      response.Error = $"No Accounts registered with {request.Email}";
-      return response;
-    }
-
-    request.Token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(request.Token));
-    var result = await _userManager.ResetPasswordAsync(user, request.Token, request.Password);
-
-    if (!result.Succeeded) {
-      response.HasError = true;
-      response.Error = $"An error occurred while reset password";
-      return response;
-    }
-
-    return response;
-  }
-
-
 
   public async Task<IEnumerable<AccountDto>> GetAll() {
     var accounts = _userManager.Users.AsEnumerable();
@@ -306,9 +243,4 @@ public class AccountService : IAccountService {
 
     await _userManager.DeleteAsync(user);
   }
-
 }
-
-
-
-

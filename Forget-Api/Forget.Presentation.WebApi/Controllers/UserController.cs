@@ -51,7 +51,7 @@ public class UserController : BaseApiController {
     Summary = "Create user",
     Description = "Create user"
   )]
-  public async Task<ActionResult> Create([FromBody] RegisterRequest request) {
+  public async Task<ActionResult> Create([FromForm] RegisterRequest request) {
     var origin = Request.Headers["origin"];
     var result = await _userService.RegisterUserAsync(request, origin);
     var user = await _userService.GetEntity(result.UserId);
@@ -69,7 +69,7 @@ public class UserController : BaseApiController {
     Summary = "Update user",
     Description = "Update user"
   )]
-  public async Task<ActionResult> Update([FromBody] RegisterRequest request) {
+  public async Task<ActionResult> Update([FromForm] RegisterRequest request) {
     var user = await _userService.GetEntity(request.Id);
     user.Image = ManageFile.Upload(request.ImageFile, user.Id, true, user.Image);
     var result = await _userService.UpdateUserAsync(request);

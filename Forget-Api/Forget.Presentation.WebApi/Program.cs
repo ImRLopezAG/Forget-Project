@@ -1,9 +1,12 @@
 using Forget.Core.Application;
 using Forget.Infrastructure.Identity;
+using Forget.Infrastructure.Identity.Entities;
+using Forget.Infrastructure.Identity.Seeds;
 using Forget.Infrastructure.Persistence;
 using Forget.Infrastructure.Shared;
 using Forget.Presentation.WebApi;
 using Forget.Presentation.WebApi.Extensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +48,21 @@ if (app.Environment.IsDevelopment())
 {
   app.UseSwagger();
   app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope()) {
+  var services = scope.ServiceProvider;
+
+  try {
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+    await DefaultRoles.SeedAsync(userManager, roleManager);
+    await DefaultAdminUser.SeedAsync(userManager, roleManager);
+    await DefaultDevUser.SeedAsync(userManager, roleManager);
+  } catch {
+
+  }
 }
 
 app.UseHttpsRedirection();

@@ -25,7 +25,7 @@ public class ProductController : GenericController<ProductDto, SaveProductDto, P
     Summary = "Create product",
     Description = "Create product"
   )]
-  public async override Task<ActionResult> Create([FromBody] SaveProductDto request) {
+  public async override Task<ActionResult> Create([FromForm] SaveProductDto request) {
     var result = await _service.Save(request);
 
     if(request.ImageFile != null){
@@ -49,7 +49,7 @@ public class ProductController : GenericController<ProductDto, SaveProductDto, P
   [ProducesResponseType(StatusCodes.Status200OK)]
   [ProducesResponseType(StatusCodes.Status400BadRequest)]
   [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-  public async override Task<ActionResult> Update([FromBody] SaveProductDto request){
+  public async override Task<ActionResult> Update([FromForm] SaveProductDto request){
     
     request.Id = RouteData.Values["id"].ToString();
     var entity = await _service.GetEntity(request.Id);

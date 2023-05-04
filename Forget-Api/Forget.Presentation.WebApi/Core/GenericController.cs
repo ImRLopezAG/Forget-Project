@@ -15,7 +15,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
   [ProducesResponseType(StatusCodes.Status404NotFound)]
   [ProducesResponseType(StatusCodes.Status500InternalServerError)]
   [SwaggerOperation(
-    summary: $"Get all entities",
+    summary: "Get all entities",
     description: "This endpoint returns all the entities"
   )]
   public async virtual Task<ActionResult> List() {
@@ -26,13 +26,13 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
     return Ok(result);
   }
 
-  [HttpGet("{id}")]
+  [HttpGet]
   [ProducesResponseType(StatusCodes.Status200OK)]
   [ProducesResponseType(StatusCodes.Status403Forbidden)]
   [ProducesResponseType(StatusCodes.Status404NotFound)]
   [ProducesResponseType(StatusCodes.Status500InternalServerError)]
   [SwaggerOperation(
-    summary: $"Get a entity by id",
+    summary: "Get a entity by id",
     description: "The id must be a valid guid and must be in the route"
   )]
   public async virtual Task<ActionResult> Get([FromQuery] string id) {
@@ -49,7 +49,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
   [ProducesResponseType(StatusCodes.Status400BadRequest)]
   [ProducesResponseType(StatusCodes.Status500InternalServerError)]
   [SwaggerOperation(
-    summary: $"Create a entity",
+    summary: "Create a entity",
     description: "The id in the body is not required"
   )]
   public async virtual Task<ActionResult> Create([FromBody] TSaveDto dto) {
@@ -70,7 +70,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
   [ProducesResponseType(StatusCodes.Status400BadRequest)]
   [ProducesResponseType(StatusCodes.Status500InternalServerError)]
   [SwaggerOperation(
-    summary: $"Update a entity",
+    summary: "Update a entity",
     description: "The id in the route must be the same as the id in the body"
   )]
   public async virtual Task<ActionResult> Update([FromBody] TSaveDto dto) {
@@ -93,7 +93,7 @@ public class GenericController<TDto, TSaveDto, TEntity> : BaseApiController, IGe
   [ProducesResponseType(StatusCodes.Status404NotFound)]
   [ProducesResponseType(StatusCodes.Status500InternalServerError)]
   [SwaggerOperation(
-    summary: $"Delete a entity",
+    summary: "Delete a entity",
     description: "The id must be a valid guid and must be in the route"
   )]
   public async virtual Task<ActionResult> Delete([FromQuery] string id) {
