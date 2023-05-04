@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "dev": "nodemon",
-    "build": "tsc",
+    "build": "tsc"
   },
   "keywords": [],
   "dependencies": {

@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.user = void 0;
+require("reflect-metadata");
+const tsyringe_1 = require("tsyringe");
+const express_1 = require("express");
+const controllers_1 = require("../controllers");
+const middleware_1 = require("../middleware");
+const libs_1 = require("../libs");
+exports.user = (0, express_1.Router)();
+const controller = tsyringe_1.container.resolve(controllers_1.UserController);
+exports.user.get('/List', controller.GetAll);
+exports.user.get('/Get/:id', controller.Get);
+exports.user.get('/email/:email', controller.GetByEmail);
+exports.user.get('/username/:username', controller.GetByUsername);
+exports.user.post('/Create', middleware_1.validateUser, controller.Create);
+exports.user.put('/Update/:id', libs_1.jwtValidation, middleware_1.validateUpdateUser, controller.Update);
+exports.user.delete('/Delete/:id', controller.Delete);
