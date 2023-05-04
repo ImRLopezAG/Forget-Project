@@ -15,7 +15,8 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "*": ["node_modules/*", "src/utils/types/*"]
     }
   },
   "include": [
