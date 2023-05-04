@@ -1,5 +1,5 @@
 import { instance } from '@/api/service'
-import { useAuthStore } from '@/context/authcontext'
+import { useAuthStore } from '@/context/authStore'
 import { IError } from '@/utils/interface'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -46,8 +46,10 @@ export function useLogin ({ username, password }: Props): Return {
           }
         )
       )
-      const { token } = login.data
-      setToken(token)
+      if (login.status === 200) {
+        const { token } = login.data
+        setToken(token)
+      }
       setIsLoading(false)
     } catch (error) {
       console.log(error)

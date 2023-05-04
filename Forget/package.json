@@ -13,7 +13,6 @@
     "@tanstack/react-query": "^4.29.3",
     "@tremor/react": "^2.2.0",
     "axios": "^1.3.6",
-    "just-debounce-it": "^3.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",

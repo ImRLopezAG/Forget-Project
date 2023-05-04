@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/context/authcontext'
+import { useAuthStore } from '@/context/authStore'
 import { PORT } from '@/utils'
 import { Base } from '@/utils/interface'
 import axios from 'axios'
