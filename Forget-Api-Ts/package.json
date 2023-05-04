@@ -4,18 +4,11 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "node -r tsconfig-paths/register ./dist/index.js",
+    "start": "node ./dist/index.js",
     "dev": "nodemon",
-    "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist"
+    "build": "tsc",
   },
   "keywords": [],
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ],
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
