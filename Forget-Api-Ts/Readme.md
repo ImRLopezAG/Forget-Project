@@ -1,6 +1,35 @@
-# Ts-Template-Api
+# Forge API Ts
 
-This is an API template made with express and typescript, to speed up your development, it contains repositories and generic services for the typical CRUD actions, based on a Sequelize model, we use it for data persistence
+This is the Api made with typescript, express and sequelize as ORM
+
+```
+ORM: Sequelize
+Language: Typescript
+Framework: Express
+Database: vercel/Postgres
+Deploy: Vercel,
+Auth: JWT
+Documentation: Swagger
+```
+## Badges
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/ImRLopezAG/Forget-Project)
+
+### 🛠️ Tools
+
+[![Postgres](https://img.shields.io/badge/Postgres-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)](https://expressjs.com/)
+[![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?logo=sequelize&logoColor=white)](https://sequelize.org/)
+[![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node](https://img.shields.io/badge/Node-339933?logo=node.js&logoColor=white)](https://nodejs.org/en/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com/)
+[![JWT](https://img.shields.io/badge/JWT-000000?logo=json-web-tokens&logoColor=white)](https://jwt.io/)
+[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
+[![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=black)](https://prettier.io/)
+[![Eslint](https://img.shields.io/badge/Eslint-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
+![Ts-Standard](https://img.shields.io/badge/Ts--Standard-3178C6?logo=typescript&logoColor=white)
+
 
 ## Installation
 
@@ -19,85 +48,213 @@ This is an API template made with express and typescript, to speed up your devel
  you need to configure .env file like the .env.dev  also you can add your configuration
 ```
 
-## API Reference
+# API Reference
 
-### Authenticate with JWT
+## Authenticate with JWT
+
+#### Log In
 
 ```
-  Post /api/Auth/Login
+  Post /api/Auth/LogIn
 ```
 
-| Body       | Type     | Description            |
-| :--------- | :------- | :--------------------- |
-| `username` | `string` | **Required**. username |
+| Body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**. email |
 | `password` | `string` | **Required**. password |
 
-#### Get all items
+#### Log out
+```
+  Post /api/Auth/LogOut
+```
+
+
+## Products
+
+### Get Products
 
 ```
-  GET /api/Category/List
+  GET /api/Product/List
 ```
 
-#### Get item
+
+### Get Product
 
 ```
- GET /api/Category/Get/${id}
+  GET /api/Product/Get/${id}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
-#### Post item
+
+### Add Product
 
 ```
- Post /api/Category/Create
+  Post /api/Product/Create
 ```
 
-| Body                  | Type       | Description                               |
-| :-------------------- | :--------- | :---------------------------------------- |
-| `Category Properties` | `Category` | **Required**. properties of item to fetch |
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**.  |
+| `description`      | `string` | **Required**.  |
+| `price`      | `number` | **Required**.  |
+| `categoryId`      | `string` | **Required**.  |
+| `portrait`      | `string` | **Optional**.  |
+| `imageFile`      | `string` | **Optional**.  |
 
-#### Update item
+- if you want to upload an image you need to send the image uploaded in a multipart form data with the key `imageFile` and the value of the image or you can send a link of the image in the key `portrait` and the value of the link.
 
-```
- Put /api/Category/Update
-```
-
-| Parameter | Type     | Description                        |
-| :-------- | :------- | :--------------------------------- |
-| `id`      | `string` | **Required**. Id of item to update |
-
-| Body                  | Type       | Description                             |
-| :-------------------- | :--------- | :-------------------------------------- |
-| `Category Properties` | `Category` | **Required**. properties of item to put |
-
-#### Delete item
+### Update Product
 
 ```
- Delete /api/Category/Delete
+  Put /api/Product/Update/${id}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**.  |
+| `description`      | `string` | **Required**.  |
+| `price`      | `number` | **Required**.  |
+| `categoryId`      | `string` | **Required**.  |
+| `portrait`      | `string` | **Optional**.  |
+| `imageFile`      | `string` | **Optional**.  |
+
+- if you want to upload an image you need to send the image uploaded in a multipart form data with the key `imageFile` and the value of the image or you can send a link of the image in the key `portrait` and the value of the link.
+
+### Delete Product
+
+```
+  Delete /api/Product/Delete/${id}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+
+
+## Users
+
+### Get Users
+
+```
+  GET /api/User/List
 ```
 
-| Parameter | Type     | Description                        |
-| :-------- | :------- | :--------------------------------- |
-| `id`      | `string` | **Required**. Id of item to delete |
 
-## Badges
+### Get User
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+```
+  GET /api/User/Get/${id}
+```
 
-## Authors
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
 
-- [@ImRLopez](https://www.github.com/imrlopezag)
 
-## 🔗 Links
+### Add User
 
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://imrlopez.dev)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/angel-gabriel-lopez/)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/imr_lopez)
+```
+  Post /api/User/Create
+```
 
-## Tech Stack
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `firstName`      | `string` | **Required**.  |
+| `lastName`      | `string` | **Required**.  |
+| `email`      | `string` | **Required**.  |
+| `username`      | `string` | **Required**.  |
+| `password`      | `string` | **Required**.  |
+| `confirmPassword`      | `string` | **Required**.  |
+| `image`      | `string` | **Required**.  |
+| `role`      | `number` | **Required**.  |
 
-**Server:** Node, Express
+### Update User
 
-**ORM:** Sequelize
+```
+  Put /api/User/Update/${id}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `firstName`      | `string` | **Required**.  |
+| `lastName`      | `string` | **Required**.  |
+| `email`      | `string` | **Required**.  |
+| `username`      | `string` | **Required**.  |
+| `password`      | `string` | **Required**.  |
+| `confirmPassword`      | `string` | **Required**.  |
+| `image`      | `string` | **Required**.  |
+| `role`      | `number` | **Required**.  |
+
+### Delete User
+
+```
+  Delete /api/User/Delete/${id}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+
+
+## Categories
+
+### Get Categories
+
+```
+  GET /api/Category/List
+```
+
+### Get Category
+
+```
+  GET /api/Category/Get/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+### Add Category
+
+```
+  Post /api/Category/Create
+```
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**.  |
+| `description`      | `string` | **Required**.  |
+
+### Update Category
+
+```
+  Put /api/Category/Update/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**.  |
+| `description`      | `string` | **Required**.  |
+
+
+### Delete Category
+
+```
+  Delete /api/Category/Delete/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+

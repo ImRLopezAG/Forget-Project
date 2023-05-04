@@ -9,7 +9,23 @@ Framework: .Net 6
 Database: SQL server
 ORM: Entity Framework
 Architecture: Onion
+Documentation: Swagger
+
 ```
+
+
+## Badges
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+### 🛠️ Tools
+
+[![C#](https://img.shields.io/badge/C%23-239120?logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![.Net](https://img.shields.io/badge/.NET-5C2D91?logo=.net&logoColor=white)](https://dotnet.microsoft.com/)
+[![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
+[![EF](https://img.shields.io/badge/Entity%20Framework%20Core-5C2D91?logo=.net&logoColor=white)](https://docs.microsoft.com/en-us/ef/core/)
+[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
+[![Onion Architecture](https://img.shields.io/badge/Onion%20Architecture-0089D6?logo=microsoft-azure&logoColor=white)](https://www.youtube.com/watch?v=rtXpYpZdOzM)
 
 
 # API Reference
@@ -221,18 +237,4 @@ Architecture: Onion
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**.|
-
-
-
-## Badges
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![.Net](https://img.shields.io/badge/.Net-6.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/6.0)
-[![SQL Server](https://img.shields.io/badge/SQL%20Server-2019-blue.svg)](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-[![Entity Framework](https://img.shields.io/badge/Entity%20Framework-6.16.0-blue.svg)](https://docs.microsoft.com/en-us/ef/ef6/)
-[![Onion Architecture](https://img.shields.io/badge/Onion%20Architecture-1.0.0-blue.svg)](https://www.codeproject.com/Articles/1154573/Onion-Architecture-in-ASP-NET-MVC)
-[![Swagger](https://img.shields.io/badge/Swagger-6.1.4-blue.svg)](https://swagger.io/)
-## Authors
-
-- [@Angel Gabriel Lopez](s://www.github.com/imrlopezag)
 
