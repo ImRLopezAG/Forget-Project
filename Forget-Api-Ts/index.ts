@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import app from './src/app'
+import app from '@/app'
 import sequelize from './src/database/database'
 import { Category, Product, User } from './src/models'
 import relationShip from './src/models/relationShip'
