@@ -1,7 +1,7 @@
-import { UserService } from '../services'
-import { SECRET } from '../utils/constants'
 import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload } from 'jsonwebtoken'
+import { UserService } from '../services'
+import { SECRET } from '../utils/constants'
 
 interface ValidateUser {
   username: string

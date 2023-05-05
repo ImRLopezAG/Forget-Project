@@ -1,12 +1,12 @@
+import express, { Application, Request, Response } from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import morgan from 'morgan'
+import swaggerUi from 'swagger-ui-express'
 import { swaggerSetup } from './libs'
 import { errorHandler } from './middleware'
 import * as router from './routes'
 import { BASE } from './utils/constants'
-import bodyParser from 'body-parser'
-import cors from 'cors'
-import express, { Application, Request, Response } from 'express'
-import morgan from 'morgan'
-import swaggerUi from 'swagger-ui-express'
 
 const app: Application = express()
 
@@ -25,7 +25,7 @@ app.use(
   `${BASE}Docs`,
   swaggerUi.serve,
   swaggerUi.setup(swaggerSetup, {
-    customSiteTitle: 'Ts Api Template',
+    customSiteTitle: 'Forget API Docs',
     customCss: '.swagger-ui .topbar { display: none }'
   })
 )

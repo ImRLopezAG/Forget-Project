@@ -1,9 +1,9 @@
-import { User } from '../models'
-import { SECRET } from '../utils/constants'
+import { NextFunction, Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
-import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
+import { User } from '../models'
+import { SECRET } from '../utils/constants'
 
 interface IAuth {
   username: string

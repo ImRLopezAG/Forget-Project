@@ -1,6 +1,6 @@
-import { SECRET } from '../utils/constants'
 import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload } from 'jsonwebtoken'
+import { SECRET } from '../utils/constants'
 
 export const jwtValidation = (
   req: Request,

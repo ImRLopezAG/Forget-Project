@@ -1,6 +1,6 @@
-import { IGenericController } from '../utils/constants'
 import { NextFunction, Request, Response } from 'express'
 import { Model } from 'sequelize'
+import { IGenericController } from '../utils/constants'
 import { GenericService } from './generic.service'
 
 export class GenericController<TEntity extends Model, TService extends GenericService<TEntity>> implements IGenericController {
