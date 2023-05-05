@@ -5,7 +5,7 @@ const swaggerDefinition: OAS3Definition = {
   openapi: '3.0.0',
   info: {
     title: 'Forget API',
-    version: '1.5',
+    version: '1.0',
     description:
       'This is a REST API application made with Express. It retrieves data from Forget DB and returns it in JSON format.',
     contact: {
@@ -15,8 +15,7 @@ const swaggerDefinition: OAS3Definition = {
   },
   servers: [
     {
-      url: `${PORT.startsWith('https') ? PORT : `http://localhost:${PORT}`}`,
-      description: 'Development server'
+      url: `${PORT.startsWith('https') ? PORT : `http://localhost:${PORT}`}`
     }
   ],
   components: {
