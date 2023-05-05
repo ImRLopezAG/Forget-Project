@@ -13,7 +13,7 @@ relationShip()
 sequelize
   .sync(/* { alter: true } */)
   .then(() => {
-    app.listen(PORT || 3000, () => {
+    app.listen(PORT, () => {
       console.log(`Server started on http://localhost:${PORT}`)
     })
   })

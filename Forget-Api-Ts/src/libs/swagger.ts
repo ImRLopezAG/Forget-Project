@@ -1,13 +1,13 @@
-import { PORT } from '../utils/constants'
 import swaggerJSDoc, { OAS3Definition, OAS3Options } from 'swagger-jsdoc'
+import { PORT } from '../utils/constants'
 
 const swaggerDefinition: OAS3Definition = {
   openapi: '3.0.0',
   info: {
-    title: 'Ts Api Template',
+    title: 'Forget API',
     version: '1.5',
     description:
-      'This is an API template made with express and typescript, to speed up your development, it contains repositories and generic services for the typical CRUD actions, based on a Sequelize model, we use it for data persistence',
+      'This is a REST API application made with Express. It retrieves data from Forget DB and returns it in JSON format.',
     contact: {
       name: 'Angel Lopez',
       url: 'https://imrlopez.dev'
@@ -15,7 +15,7 @@ const swaggerDefinition: OAS3Definition = {
   },
   servers: [
     {
-      url: `http://localhost:${PORT}`
+      url: `${PORT}`
     }
   ],
   components: {
@@ -33,7 +33,7 @@ const swaggerDefinition: OAS3Definition = {
 
 const swaggerOptions: OAS3Options = {
   swaggerDefinition,
-  apis: ['./src/docs/*.ts'],
+  apis: ['./src/docs/*.ts', '../docs/*.ts'],
   explorer: true,
   security: [{ Bearer: [] }]
 }
