@@ -15,7 +15,7 @@ const swaggerDefinition: OAS3Definition = {
   },
   servers: [
     {
-      url: `${PORT}`
+      url: `${PORT.startsWith('https') ? PORT : `http://localhost:${PORT}`}`
     }
   ],
   components: {
@@ -33,7 +33,7 @@ const swaggerDefinition: OAS3Definition = {
 
 const swaggerOptions: OAS3Options = {
   swaggerDefinition,
-  apis: ['./src/docs/*.ts', '../docs/*.ts'],
+  apis: ['./src/docs/*.ts'],
   explorer: true,
   security: [{ Bearer: [] }]
 }
