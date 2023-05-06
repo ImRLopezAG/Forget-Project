@@ -2,10 +2,12 @@ import express, { Application, Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import morgan from 'morgan'
+import multer from 'multer'
 import swaggerUi from 'swagger-ui-express'
 import { swaggerSetup } from './libs'
 import { errorHandler } from './middleware'
 import * as router from './routes'
+import { imageStorage } from './utils/func/multer'
 import { BASE } from './utils/constants'
 
 const app: Application = express()
@@ -19,10 +21,15 @@ app.use(
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(express.static('public'))
+
+app.use(multer({ storage: imageStorage }).single('imageFile'))
+app.use(multer({ storage: imageStorage }).array('imageFile'))
+
 app.use(morgan('dev'))
 
 app.use(
-  `${BASE}Docs`,
+  `${BASE}docs`,
   swaggerUi.serve,
   swaggerUi.setup(swaggerSetup, {
     customSiteTitle: 'Forget API Docs',
@@ -34,9 +41,9 @@ app.get('/', (_req: Request, res: Response) => {
   res.redirect(`${BASE}Docs`)
 })
 
-app.use(`${BASE}Auth`, router.auth)
-app.use(`${BASE}Category`, router.entity)
-app.use(`${BASE}User`, router.user)
+app.use(`${BASE}auth`, router.auth)
+app.use(`${BASE}category`, router.entity)
+app.use(`${BASE}user`, router.user)
 
 app.use('*', errorHandler)
 

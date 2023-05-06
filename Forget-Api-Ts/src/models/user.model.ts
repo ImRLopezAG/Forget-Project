@@ -5,11 +5,19 @@ import sequelize from '../database/database'
 
 export class User extends Model {
   declare id: string
+  declare firstName: string
+  declare lastName: string
+  declare email: string
   declare username: string
   declare password: string
-  declare email: string
-  toJSON (): Omit<this, 'password'> {
-    return Object.assign({}, this.get(), { password: undefined })
+  declare image: string
+  toJSON (): Omit<this, 'password' | 'createdAt' | 'updatedAt'> {
+    return {
+      ...this.get(),
+      password: undefined,
+      createdAt: undefined,
+      updatedAt: undefined
+    }
   }
 }
 
@@ -20,6 +28,18 @@ User.init(
       primaryKey: true,
       defaultValue: (): string => crypto.randomUUID(),
       unique: true
+    },
+    firstName: {
+      type: DataTypes.STRING(32),
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING(32),
+      allowNull: false
+    },
+    image: {
+      type: DataTypes.STRING(128),
+      allowNull: true
     },
     username: {
       type: DataTypes.STRING(12),

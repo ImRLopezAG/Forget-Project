@@ -33,7 +33,7 @@ const swaggerDefinition: OAS3Definition = {
 
 const swaggerOptions: OAS3Options = {
   swaggerDefinition,
-  apis: ['src/**/*.ts'],
+  apis: ['./src/docs/*.ts'],
   explorer: true,
   security: [{ Bearer: [] }]
 }

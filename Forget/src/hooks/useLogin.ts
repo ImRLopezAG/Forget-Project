@@ -27,7 +27,7 @@ export function useLogin ({ username, password }: Props): Return {
 
   const { hasError, errorMessage } = userError
 
-  const setToken = useAuthStore((state) => state.setToken)
+  const { setUser, setToken } = useAuthStore.getState()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const handleLogin = async (): Promise<void> => {
@@ -49,6 +49,8 @@ export function useLogin ({ username, password }: Props): Return {
       if (login.status === 200) {
         const { token } = login.data
         setToken(token)
+        const user = await instance.get(`/user/username/${username}`)
+        setUser(user.data)
       }
       setIsLoading(false)
     } catch (error) {
