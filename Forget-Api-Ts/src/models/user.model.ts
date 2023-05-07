@@ -1,80 +1,35 @@
+import { getModelForClass, pre, prop } from '@typegoose/typegoose'
 import bcrypt from 'bcrypt'
-import crypto from 'crypto'
-import { DataTypes, Model } from 'sequelize'
-import sequelize from '../database/database'
+import { UserRole } from '../utils/constants/enums'
+import { BaseEntity } from './base.entity'
 
-export class User extends Model {
-  declare id: string
-  declare firstName: string
-  declare lastName: string
-  declare email: string
-  declare username: string
-  declare password: string
-  declare image: string
-  toJSON (): Omit<this, 'password' | 'createdAt' | 'updatedAt'> {
-    return {
-      ...this.get(),
-      password: undefined,
-      createdAt: undefined,
-      updatedAt: undefined
-    }
+@pre<User>('save', async function (next) {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 10)
   }
+  next()
+})
+export class User extends BaseEntity {
+  @prop({ required: true })
+  declare firstName: string
+
+  @prop({ required: true })
+  declare lastName: string
+
+  @prop({ required: true, unique: true })
+  declare email: string
+
+  @prop({ required: true, unique: true })
+  declare username: string
+
+  @prop({ required: true })
+  declare password: string
+
+  @prop()
+  declare image: string
+
+  @prop({ enum: UserRole, default: UserRole.USER })
+  declare role: UserRole
 }
 
-User.init(
-  {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: (): string => crypto.randomUUID(),
-      unique: true
-    },
-    firstName: {
-      type: DataTypes.STRING(32),
-      allowNull: false
-    },
-    lastName: {
-      type: DataTypes.STRING(32),
-      allowNull: false
-    },
-    image: {
-      type: DataTypes.STRING(128),
-      allowNull: true
-    },
-    username: {
-      type: DataTypes.STRING(12),
-      allowNull: false,
-      validate: {
-        min: 4,
-        max: 12,
-        notEmpty: true
-      },
-      unique: true
-    },
-    password: {
-      type: DataTypes.STRING(128),
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING(128),
-      allowNull: false,
-      validate: {
-        isEmail: true,
-        notEmpty: true
-      },
-      unique: true
-    }
-  },
-  {
-    tableName: 'users',
-    sequelize
-  }
-)
-
-User.beforeCreate(async (user: User) => {
-  user.password = await bcrypt.hash(user.password, 10)
-})
-
-User.beforeUpdate(async (user: User) => {
-  user.password = await bcrypt.hash(user.password, 10)
-})
+export const UserModel = getModelForClass(User)

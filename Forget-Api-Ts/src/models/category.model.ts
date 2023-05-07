@@ -1,26 +1,9 @@
-import crypto from 'crypto'
-import { DataTypes, Model } from 'sequelize'
-import sequelize from '../database/database'
+import { getModelForClass, prop } from '@typegoose/typegoose'
+import { BaseEntity } from './base.entity'
 
-export class Category extends Model {
-  declare id: string
+export class Category extends BaseEntity {
+  @prop()
   declare name: string
 }
 
-Category.init(
-  {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: () => crypto.randomUUID()
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
-  },
-  {
-    sequelize,
-    tableName: 'categories'
-  }
-)
+export const CategoryModel = getModelForClass(Category)

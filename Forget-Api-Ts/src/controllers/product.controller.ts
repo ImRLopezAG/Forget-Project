@@ -1,8 +1,8 @@
 import { ProductService } from '../services'
-import { Lifecycle, injectable, scoped } from 'tsyringe'
 import { GenericController } from '../core'
 import { IProductController } from '../interfaces/controllers'
 import { Product } from '../models'
+import { Lifecycle, injectable, scoped } from 'tsyringe'
 
 @injectable()
 @scoped(Lifecycle.ContainerScoped)

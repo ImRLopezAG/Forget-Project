@@ -1,16 +1,13 @@
-import { Sequelize } from 'sequelize'
-import { DBDIALECT, DBNAME, DBPASSWORD, DBUSER, HOST } from '../utils/constants'
+import { connect } from 'mongoose'
+import { DB_NAME, MONGO_URI } from '../utils/constants'
 
-const sequelize: Sequelize = new Sequelize(DBNAME, DBUSER, DBPASSWORD, {
-  host: HOST,
-  dialect: DBDIALECT,
-  port: 7246,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
+export const connectDatabase = async (): Promise<void> => {
+  try {
+    await connect(MONGO_URI, {
+      dbName: DB_NAME
+    })
+    console.log('Connected to MongoDB')
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error)
   }
-})
-
-export default sequelize
+}

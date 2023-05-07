@@ -42,7 +42,7 @@ app.get('/', (_req: Request, res: Response) => {
 })
 
 app.use(`${BASE}auth`, router.auth)
-app.use(`${BASE}category`, router.entity)
+app.use(`${BASE}category`, router.category)
 app.use(`${BASE}user`, router.user)
 
 app.use('*', errorHandler)
