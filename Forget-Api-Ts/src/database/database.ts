@@ -1,9 +1,9 @@
 import { connect } from 'mongoose'
-import { DB_NAME, MONGO_URI } from '../utils/constants'
+import { DB_NAME, MONGODB_URI } from '../utils/constants'
 
 export const connectDatabase = async (): Promise<void> => {
   try {
-    await connect(MONGO_URI, {
+    await connect(MONGODB_URI, {
       dbName: DB_NAME,
       connectTimeoutMS: 10000
     })
