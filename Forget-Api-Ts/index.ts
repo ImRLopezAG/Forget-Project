@@ -9,15 +9,14 @@ connectDatabase()
     const category = new CategoryModel()
     const user = new UserModel()
     const product = new ProductModel()
+    app.listen(PORT, () => {
+      console.log(
+        `Server started on port: ${
+          PORT.startsWith('http') ? PORT : `http://localhost:${PORT}`
+        }`
+      )
+    })
   })
   .catch((err) => {
     console.log(err.message)
   })
-
-app.listen(PORT, () => {
-  console.log(
-    `Server started on port: ${
-      PORT.startsWith('http') ? PORT : `http://localhost:${PORT}`
-    }`
-  )
-})

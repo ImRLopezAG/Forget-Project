@@ -4,7 +4,8 @@ import { DB_NAME, MONGO_URI } from '../utils/constants'
 export const connectDatabase = async (): Promise<void> => {
   try {
     await connect(MONGO_URI, {
-      dbName: DB_NAME
+      dbName: DB_NAME,
+      connectTimeoutMS: 10000
     })
     console.log('Connected to MongoDB')
   } catch (error) {
