@@ -11,7 +11,7 @@ connectDatabase()
     const product = new ProductModel()
 
     app.listen(PORT, () => {
-      console.log(`Server started on http://localhost:${PORT}`)
+      console.log(`Server started on port: ${PORT.startsWith('http') ? PORT : `http://localhost:${PORT}`}`)
     })
   })
   .catch((err) => {
