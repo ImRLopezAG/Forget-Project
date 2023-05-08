@@ -26,7 +26,7 @@ export class UserController extends GenericController<User, UserService> impleme
       if (user != null) {
         return res.status(200).json(user)
       } else {
-        return res.status(404).json({ message: `The user with email ${req.params.id} does not exist` })
+        return res.status(404).json({ message: `The user with email ${email} does not exist` })
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -46,7 +46,7 @@ export class UserController extends GenericController<User, UserService> impleme
       if (user != null) {
         return res.status(200).json(user)
       } else {
-        return res.status(404).json({ message: `The user with username ${req.params.id} does not exist` })
+        return res.status(404).json({ message: `The user with username ${username} does not exist` })
       }
     } catch (error) {
       if (error instanceof Error) {
