@@ -1,14 +1,9 @@
-import { Router } from 'express'
 import 'reflect-metadata'
+import { Router } from 'express'
 import { container } from 'tsyringe'
 import { CategoryController } from '../controllers'
-import { CategoryModel } from '../models'
-import { CategoryService } from '../services'
 
 export const category = Router()
-
-container.register('CategoryService', { useClass: CategoryService })
-container.register('CategoryModel', { useValue: CategoryModel })
 
 const controller: CategoryController = container.resolve(CategoryController)
 

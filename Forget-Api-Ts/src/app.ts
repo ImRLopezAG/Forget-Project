@@ -38,12 +38,13 @@ app.use(
 )
 
 app.get('/', (_req: Request, res: Response) => {
-  res.redirect(`${BASE}Docs`)
+  res.redirect(`${BASE}docs`)
 })
 
 app.use(`${BASE}auth`, router.auth)
-app.use(`${BASE}category`, router.category)
 app.use(`${BASE}user`, router.user)
+app.use(`${BASE}product`, router.product)
+app.use(`${BASE}category`, router.category)
 
 app.use('*', errorHandler)
 

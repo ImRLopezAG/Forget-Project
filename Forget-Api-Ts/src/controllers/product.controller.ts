@@ -6,7 +6,7 @@ import { Lifecycle, injectable, scoped } from 'tsyringe'
 
 @injectable()
 @scoped(Lifecycle.ContainerScoped)
-export class EntityController extends GenericController<Product, ProductService> implements IProductController {
+export class ProductController extends GenericController<Product, ProductService> implements IProductController {
   protected service: ProductService
   constructor (service: ProductService) {
     super(service)

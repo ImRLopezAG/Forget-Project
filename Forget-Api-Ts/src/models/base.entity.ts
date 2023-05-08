@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { prop } from '@typegoose/typegoose'
 import { randomUUID } from 'crypto'
 import { Document } from 'mongoose'
@@ -12,10 +13,9 @@ export abstract class BaseEntity extends Document {
   @prop({ default: () => new Date().toISOString() })
   declare updatedAt: Date
 
-  toJson (): Omit<this, 'createdAt' | 'updatedAt'> {
-    return Object.assign({}, this, {
-      createdAt: undefined,
-      updatedAt: undefined
-    })
+  toJSON (): object {
+    const obj = this.toObject()
+    const { createdAt, updatedAt, password, __v, ...rest } = obj
+    return rest
   }
 }

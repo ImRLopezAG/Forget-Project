@@ -3,10 +3,11 @@
 This is the Api made with typescript, express and sequelize as ORM
 
 ```
-ORM: Sequelize
+ODM: mongoose
+ORM: typegoose
 Language: Typescript
 Framework: Express
-Database: vercel/Postgres
+Database: vercel/mongodb
 Deploy: Vercel,
 Auth: JWT
 Documentation: Swagger
@@ -18,9 +19,10 @@ Documentation: Swagger
 
 ### 🛠️ Tools
 
-[![Postgres](https://img.shields.io/badge/Postgres-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)](https://expressjs.com/)
-[![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?logo=sequelize&logoColor=white)](https://sequelize.org/)
+[![Mongoose](https://img.shields.io/badge/Mongoose-47A248?logo=mongoose&logoColor=white)](https://mongoosejs.com/)
+[![Typegoose](https://img.shields.io/badge/Typegoose-3178C6?logo=typescript&logoColor=white)](https://typegoose.github.io/typegoose/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-339933?logo=node.js&logoColor=white)](https://nodejs.org/en/)
 [![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com/)
@@ -154,6 +156,24 @@ Documentation: Swagger
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
+
+### Get User by email
+
+```
+  GET /api/User/email/${email}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required**. Id of item to fetch |
+### Get User by username
+
+```
+  GET /api/User/username/${username}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `username`      | `string` | **Required**. Id of item to fetch |
 
 
 ### Add User
