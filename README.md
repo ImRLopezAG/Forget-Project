@@ -5,21 +5,12 @@ This is the complete forget project, this is an E-Commerce, with authentication 
 ## Tech Stack
 
 ```
-- React
-- .Net
-- SQL Server
-- Postgres
-- Vite
-- Tailwind CSS
-- TypeScript
-- Axios
-- C#
-- Express
-- Node
-- Jwt
-- Swagger
-- Entity Framework
-- Sequelize
+- React        - .Net           - SQL Server
+- Vite         - Tailwind CSS
+- TypeScript   - Axios          - C#
+- Express      - Node           - Jwt
+- Swagger      - Entity Framework
+- Mongoose     - Typegoose
 ```
 
 ## Badges
@@ -31,23 +22,28 @@ This is the complete forget project, this is an E-Commerce, with authentication 
 ![GitHub Language Count](https://img.shields.io/github/languages/count/ImRLopezAG/Forget-Project)
 
 ### 🛠️ Tools
-
-[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Axios](https://img.shields.io/badge/Axios-5A2D9C?logo=axios&logoColor=white)](https://axios-http.com/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![C#](https://img.shields.io/badge/C%23-239120?logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
-[![.Net](https://img.shields.io/badge/.NET-5C2D91?logo=.net&logoColor=white)](https://dotnet.microsoft.com/)
-[![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
-[![Postgres](https://img.shields.io/badge/Postgres-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)](https://expressjs.com/)
-[![Node](https://img.shields.io/badge/Node-339933?logo=node.js&logoColor=white)](https://nodejs.org/en/)
-[![JWT](https://img.shields.io/badge/JWT-000000?logo=json-web-tokens&logoColor=white)](https://jwt.io/)
-[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
-[![EF](https://img.shields.io/badge/Entity%20Framework%20Core-5C2D91?logo=.net&logoColor=white)](https://docs.microsoft.com/en-us/ef/core/)
-[![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?logo=sequelize&logoColor=white)](https://sequelize.org/)
-
+  
+  [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+  [![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Axios](https://img.shields.io/badge/Axios-5C2D91?logo=axios&logoColor=white)](https://axios-http.com/)
+  [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
+  [![Entity Framework](https://img.shields.io/badge/Entity_Framework-512BD4?logo=entity-framework&logoColor=white)](https://docs.microsoft.com/en-us/ef/)
+  [![Typegoose](https://img.shields.io/badge/Typegoose-FF69B4?logo=typescript&logoColor=white)](https://typegoose.github.io/typegoose/)
+  [![Mongoose](https://img.shields.io/badge/Mongoose-47A248?logo=mongoose&logoColor=white)](https://mongoosejs.com/)
+  [![Jwt](https://img.shields.io/badge/Jwt-000000?logo=json-web-tokens&logoColor=white)](https://jwt.io/)
+  [![Node](https://img.shields.io/badge/Node-339933?logo=node.js&logoColor=white)](https://nodejs.org/en/)
+  [![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)](https://expressjs.com/)
+  [![.Net](https://img.shields.io/badge/.Net-5C2D91?logo=.net&logoColor=white)](https://dotnet.microsoft.com/)
+  [![C#](https://img.shields.io/badge/C%23-239120?logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+  [![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
+  [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+  [![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-007ACC?logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/)
+  [![Visual Studio](https://img.shields.io/badge/Visual_Studio-5C2D91?logo=visual-studio&logoColor=white)](https://visualstudio.microsoft.com/)
+  [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)](https://git-scm.com/)
+  [![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](
+  https://github.com/ImRLopezAG)
 ## 🚀 Repositories
 
 ### FrontEnd
