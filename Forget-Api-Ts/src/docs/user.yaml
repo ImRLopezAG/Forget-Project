@@ -44,11 +44,8 @@ components:
           type: string
         role:
           type: string
-          enum: [USER, ADMIN]  # Replace with the actual enum values for UserRole
+          enum: [USER, ADMIN] # Replace with the actual enum values for UserRole
 
-tags:
-  name: User
-  description: User management
 
 /api/User/List:
   get:
@@ -71,7 +68,7 @@ tags:
         description: Unauthorized
 
 /api/User/Get/{id}:
- get:
+  get:
     tags:
       - User
     summary: Get a user
@@ -152,7 +149,7 @@ tags:
         description: Internal server error
 
 /api/User/Create:
- post:
+  post:
     tags:
       - User
     summary: Create a user
@@ -209,7 +206,7 @@ tags:
         description: Internal server error
 
 /api/User/Delete/{id}:
- delete:
+  delete:
     tags:
       - User
     summary: Delete a user
@@ -230,4 +227,3 @@ tags:
         description: Unauthorized
       500:
         description: Internal server error
-

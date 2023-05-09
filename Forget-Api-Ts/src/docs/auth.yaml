@@ -27,29 +27,28 @@ components:
         password: password
 
 tags:
-  - name: Authentication
-    description: Authentication management
+  name: Authentication
+  description: Authentication management
 
-paths:
-  /api/Auth/Login:
-    post:
-      tags:
-        - Authentication
-      summary: Login
-      description: Login
-      requestBody:
+/api/Auth/Login:
+  post:
+    tags:
+      - Authentication
+    summary: Login
+    description: Login
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserLogin'
+    responses:
+      200:
+        description: Login successful
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserLogin'
-      responses:
-        '200':
-          description: Login successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Authentication'
-        '400':
-          description: Bad request
-        '500':
-          description: Internal server error
+              $ref: '#/components/schemas/Authentication'
+      400:
+        description: Bad request
+      500:
+        description: Internal server error
