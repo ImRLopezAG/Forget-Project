@@ -9,6 +9,13 @@ import { BaseEntity } from './base.entity'
   }
   next()
 })
+@pre<User>('findOneAndUpdate', async function (next) {
+  const update: any = this.getUpdate()
+  if (update.password) {
+    update.password = await bcrypt.hash(update.password, 10)
+  }
+  next()
+})
 export class User extends BaseEntity {
   @prop({ required: true })
   declare firstName: string
@@ -16,10 +23,10 @@ export class User extends BaseEntity {
   @prop({ required: true })
   declare lastName: string
 
-  @prop({ required: true, unique: true })
+  @prop({ required: true, unique: true, lowercase: true })
   declare email: string
 
-  @prop({ required: true, unique: true })
+  @prop({ required: true, unique: true, lowercase: true })
   declare username: string
 
   @prop({ required: true })

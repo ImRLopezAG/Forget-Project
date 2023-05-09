@@ -94,7 +94,7 @@ const swaggerDefinition: OAS3Definition = {
           username: 'John',
           email: 'john@example.com',
           password: '123456abc',
-          role: 'Admin'
+          role: 'user'
         }
       },
       User: {
@@ -142,8 +142,11 @@ const swaggerDefinition: OAS3Definition = {
           image: {
             type: 'string'
           },
-          category: {
-            type: 'string'
+          categories: {
+            type: 'array',
+            items: {
+              type: 'string'
+            }
           }
         },
         example: {
@@ -151,7 +154,7 @@ const swaggerDefinition: OAS3Definition = {
           price: 9.99,
           description: 'Product description',
           image: 'example.jpg',
-          category: 'Category ID'
+          categories: ['category1', 'category2']
         }
       },
       Product: {
@@ -183,10 +186,15 @@ const swaggerDefinition: OAS3Definition = {
           name: {
             type: 'string',
             description: 'Category name'
+          },
+          description: {
+            type: 'string',
+            description: 'Category description'
           }
         },
         example: {
-          name: 'Category name'
+          name: 'shoes',
+          description: 'shoes description'
         }
       },
       Category: {
@@ -199,10 +207,15 @@ const swaggerDefinition: OAS3Definition = {
           name: {
             type: 'string',
             description: 'Category name'
+          },
+          description: {
+            type: 'string',
+            description: 'Category description'
           }
         },
         example: {
-          name: 'Category name'
+          name: 'Category name',
+          description: 'Category description'
         }
       }
     }
@@ -768,7 +781,7 @@ const swaggerDefinition: OAS3Definition = {
       post: {
         tags: ['Category'],
         summary: 'Create an Category',
-        description: 'Create an Category',
+        description: 'Create an Category, the name must be unique',
         requestBody: {
           content: {
             'application/json': {
@@ -872,7 +885,7 @@ const swaggerDefinition: OAS3Definition = {
 
 const swaggerOptions: OAS3Options = {
   swaggerDefinition,
-  apis: ['./src/docs/swagger.yaml'],
+  apis: ['./src/routes/*.router.ts'],
   explorer: true,
   security: [{ Bearer: [] }]
 }

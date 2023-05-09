@@ -16,12 +16,8 @@ export abstract class GenericService<TEntity extends BaseEntity> implements IGen
   }
 
   async Create (entity: TEntity): Promise<TEntity> {
-    try {
-      const created = await this.model.create(entity)
-      return created
-    } catch (e) {
-      throw new Error('Error while creating entity')
-    }
+    const created = await this.model.create(entity)
+    return created
   }
 
   async Update (id: string | number, entity: Partial<TEntity>): Promise<TEntity> {

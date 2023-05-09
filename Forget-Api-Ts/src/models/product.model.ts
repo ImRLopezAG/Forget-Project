@@ -15,7 +15,7 @@ export class Product extends BaseEntity {
   @prop()
   declare image: string
 
-  @prop({ ref: () => Category })
+  @prop({ ref: () => Category, type: () => String })
   declare categories: Array<Ref<Category>>
 }
 

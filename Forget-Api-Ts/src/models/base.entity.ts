@@ -1,8 +1,13 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { prop } from '@typegoose/typegoose'
+import { pre, prop } from '@typegoose/typegoose'
 import { randomUUID } from 'crypto'
 import { Document } from 'mongoose'
 
+@pre<BaseEntity>('findOneAndUpdate', function (next) {
+  const update: any = this.getUpdate()
+  update.updatedAt = new Date().toISOString()
+  next()
+})
 export abstract class BaseEntity extends Document {
   @prop({ required: true, default: () => randomUUID() })
   public _id!: string

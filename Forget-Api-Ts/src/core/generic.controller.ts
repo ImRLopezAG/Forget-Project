@@ -24,7 +24,7 @@ export class GenericController<TEntity extends BaseEntity, TService extends Gene
       if (error instanceof Error) {
         return next(error)
       }
-      return res.status(500).json({ status: 500, message: 'Internal server error' })
+      return res.status(500).send('Internal server error')
     }
   }
 
@@ -46,7 +46,6 @@ export class GenericController<TEntity extends BaseEntity, TService extends Gene
       if (error instanceof Error) {
         return next(error)
       }
-      return res.status(500).json({ status: 500, message: 'Internal server error' })
     }
   }
 
@@ -64,11 +63,11 @@ export class GenericController<TEntity extends BaseEntity, TService extends Gene
       const created = await this.service.Create(entity)
 
       return res.status(201).json({ created })
-    } catch (error) {
-      if (error instanceof Error) {
-        return next(error)
+    } catch (error: any) {
+      if (error.name === 'MongoServerError') {
+        return res.status(400).json({ message: error.message })
       }
-      return res.status(500).json({ status: 500, message: 'Internal server error' })
+      return next(error)
     }
   }
 
@@ -88,11 +87,11 @@ export class GenericController<TEntity extends BaseEntity, TService extends Gene
       } else {
         return res.status(404).json({ message: `The entity with id ${id} does not exist` })
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        return next(error)
+    } catch (error: any) {
+      if (error.name === 'MongoServerError') {
+        return res.status(400).json({ message: error.message })
       }
-      return res.status(500).json({ status: 500, message: 'Internal server error' })
+      return next(error)
     }
   }
 
@@ -106,11 +105,11 @@ export class GenericController<TEntity extends BaseEntity, TService extends Gene
       const deleted = await this.service.Delete(id)
 
       return res.status(200).json({ deleted })
-    } catch (error) {
-      if (error instanceof Error) {
-        return next(error)
+    } catch (error: any) {
+      if (error.name === 'MongoServerError') {
+        return res.status(400).json({ message: error.message })
       }
-      return res.status(500).json({ status: 500, message: 'Internal server error' })
+      return next(error)
     }
   }
 }
