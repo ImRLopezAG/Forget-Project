@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from 'express'
+import { join } from 'path'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import morgan from 'morgan'
@@ -19,7 +20,7 @@ app.use(
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(express.static('public'))
+app.use(express.static(join(__dirname, 'public')))
 
 app.use(multer({ storage: imageStorage }).single('imageFile'))
 app.use(multer({ storage: imageStorage }).array('imageFile'))

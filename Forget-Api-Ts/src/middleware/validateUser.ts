@@ -11,6 +11,16 @@ interface ValidateUser {
 const services = UserModel
 export const validateUser = async (req: Request, res: Response, next: NextFunction): Promise<Response | any> => {
   const { username, email }: ValidateUser = req.body
+  const regexInvalidUserName = /[a-zA-Z0-9]/g
+  const regexInvalidEmail = /\S+@\S+\.\S+/
+
+  if (!regexInvalidUserName.test(username)) {
+    return res.status(400).json({ error: 'Username is invalid' })
+  }
+
+  if (!regexInvalidEmail.test(email)) {
+    return res.status(400).json({ error: 'Email is invalid' })
+  }
 
   if (username === undefined || email === undefined) {
     return res.status(400).json({ status: 400, message: 'The property username or email is required' })
@@ -31,6 +41,9 @@ export const validateUser = async (req: Request, res: Response, next: NextFuncti
 
 export const validateUpdateUser = async (req: Request, res: Response, next: NextFunction): Promise<Response | any> => {
   const authHeader = req.headers.authorization
+  const regexInvalidUserName = /[a-zA-Z0-9]/g
+  const regexInvalidEmail = /\S+@\S+\.\S+/
+
   if (authHeader?.split(' ')[0] !== 'Bearer') {
     return res.status(401).json({ error: 'Access denied, you need to login' })
   }
@@ -48,13 +61,19 @@ export const validateUpdateUser = async (req: Request, res: Response, next: Next
     }
 
     if (username !== undefined && user?.username !== username) {
+      if (!regexInvalidUserName.test(username)) {
+        return res.status(400).json({ error: 'Username is invalid' })
+      }
       const searchUser = await services.findOne({ username })
       if (searchUser?.username === username) {
         return res.status(400).json({ status: 400, message: 'Username already in use' })
       }
     }
 
-    if (username !== undefined && user?.email !== email) {
+    if (email !== undefined && user?.email !== email) {
+      if (!regexInvalidEmail.test(email)) {
+        return res.status(400).json({ error: 'Email is invalid' })
+      }
       const searchEmail = await services.findOne({ email })
       if (searchEmail?.email === email) {
         return res.status(400).json({ error: 'Email already in use' })

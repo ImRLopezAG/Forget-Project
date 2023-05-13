@@ -102,9 +102,9 @@ export class GenericController<TEntity extends BaseEntity, TService extends Gene
         return res.status(400).json({ message: 'The id is required' })
       }
 
-      const deleted = await this.service.Delete(id)
+      await this.service.Delete(id)
 
-      return res.status(200).json({ deleted })
+      return res.status(204).json()
     } catch (error: any) {
       if (error.name === 'MongoServerError') {
         return res.status(400).json({ message: error.message })

@@ -420,7 +420,7 @@ const swaggerDefinition: OAS3Definition = {
     },
     '/api/user/create': {
       post: {
-        tags: ['User'],
+        tags: ['Authentication'],
         summary: 'Create a user',
         description: 'Create a user',
         requestBody: {
@@ -522,7 +522,7 @@ const swaggerDefinition: OAS3Definition = {
           }
         ],
         responses: {
-          200: {
+          204: {
             description: 'Delete a user'
           },
           401: {
@@ -702,7 +702,7 @@ const swaggerDefinition: OAS3Definition = {
           }
         ],
         responses: {
-          200: {
+          204: {
             description: 'Delete a product'
           },
           401: {
@@ -865,7 +865,7 @@ const swaggerDefinition: OAS3Definition = {
           }
         ],
         responses: {
-          200: {
+          204: {
             description: 'Delete an Category'
           },
           401: {
